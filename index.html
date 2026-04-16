@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ca"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Xarxa de Favors</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#e6e8ea",
+                    "primary-fixed": "#9ec2fd",
+                    "on-tertiary-fixed-variant": "#704d50",
+                    "error-dim": "#9f0519",
+                    "surface-variant": "#dadddf",
+                    "on-primary-fixed-variant": "#1d4679",
+                    "on-primary-container": "#103d6f",
+                    "on-surface-variant": "#595c5d",
+                    "primary-container": "#9ec2fd",
+                    "surface": "#f5f6f7",
+                    "secondary-container": "#b1f2b8",
+                    "primary-dim": "#2a5084",
+                    "surface-container-highest": "#dadddf",
+                    "outline": "#757778",
+                    "surface-tint": "#375c91",
+                    "on-tertiary-container": "#654446",
+                    "tertiary-fixed-dim": "#efc1c4",
+                    "on-secondary-fixed": "#064a20",
+                    "on-primary-fixed": "#002851",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#375c91",
+                    "secondary-fixed-dim": "#a3e4aa",
+                    "outline-variant": "#abadae",
+                    "tertiary-dim": "#694649",
+                    "secondary-fixed": "#b1f2b8",
+                    "secondary-dim": "#1d5b2f",
+                    "primary-fixed-dim": "#91b5ef",
+                    "surface-dim": "#d1d5d7",
+                    "on-surface": "#2c2f30",
+                    "inverse-primary": "#9ec2fd",
+                    "on-tertiary": "#ffefef",
+                    "error": "#b31b25",
+                    "surface-bright": "#f5f6f7",
+                    "on-error": "#ffefee",
+                    "on-error-container": "#570008",
+                    "on-secondary-fixed-variant": "#2b673a",
+                    "inverse-surface": "#0c0f10",
+                    "on-tertiary-fixed": "#513134",
+                    "surface-container-low": "#eff1f2",
+                    "on-background": "#2c2f30",
+                    "secondary": "#2b673a",
+                    "on-secondary": "#ceffd1",
+                    "tertiary-container": "#feced1",
+                    "inverse-on-surface": "#9b9d9e",
+                    "tertiary-fixed": "#feced1",
+                    "tertiary": "#765255",
+                    "background": "#f5f6f7",
+                    "on-primary": "#eef2ff",
+                    "surface-container-high": "#e0e3e4",
+                    "error-container": "#fb5151",
+                    "on-secondary-container": "#205d31"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1.5rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .modal-overlay {
+            background-color: rgba(44, 47, 48, 0.4);
+            backdrop-filter: blur(8px);
+        }
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { 
+            background: #abadae66; 
+            border-radius: 10px; 
+        }
+        .filter-btn { opacity: 0.55; }
+        .filter-btn.actiu { opacity: 1; box-shadow: 0 0 0 2.5px currentColor; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-surface-container/50">
+<div class="flex justify-between items-center px-8 h-20 max-w-7xl mx-auto w-full">
+<div class="text-2xl font-black bg-gradient-to-br from-primary to-primary-fixed bg-clip-text text-transparent tracking-tighter">
+            Xarxa de Favors
+        </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-primary font-bold border-b-2 border-primary" href="#">Explorar</a>
+<a class="text-on-surface-variant hover:text-primary font-semibold transition-colors duration-300" href="#">Comunitat</a>
+<a class="text-on-surface-variant hover:text-primary font-semibold transition-colors duration-300" href="#">Tancar un missatge</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors duration-300">
+<span class="material-symbols-outlined text-on-surface-variant">dark_mode</span>
+</button>
+<button class="md:hidden p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-12">
+<!-- Hero Section -->
+<section class="max-w-7xl mx-auto px-4 sm:px-8 mb-16">
+<div class="relative overflow-hidden rounded-2xl sm:rounded-[2.5rem] bg-primary-container/20 min-h-[340px] md:h-[450px] flex items-center px-6 sm:px-8 md:px-12 py-10 md:py-0 group">
+<div class="absolute inset-0 z-0">
+<img alt="Community hands" class="w-full h-full object-cover opacity-50 mix-blend-overlay transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNS4T0TKiWnX7USlZCcbpYTvFxzWUlfXN2GWjkgZ_TNiM34jQvTlkZFpDmL65w7HITTWHxe87S_5a59qf2dL73_ymldAiWfSLK-ZO3BzjcVOlCMlC7beevZW7DffvUvvCKaxm5uFsI6X_vTGUXigjYtcWTIoRb08-LV5nNewoEzMEY8HoloRL6ucH8DzweVqxznzfBrrDIbgB0FJGa5gjVbTByCxWLSnyz_fzAlr2-x2bqs3dAX56q7fB-e__4lmkPX5XBEeV_w25w"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/70 to-transparent"></div>
+</div>
+<div class="relative z-10 w-full max-w-2xl">
+<h1 class="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight text-on-surface mb-4 md:mb-6 leading-[1.1]">
+                    La teva comunitat, <br/><span class="text-primary">més a prop que mai</span>
+</h1>
+<p class="text-base md:text-xl text-on-surface-variant mb-6 md:mb-8 font-medium max-w-lg leading-relaxed">
+                    Connecta amb els teus veïns per oferir o demanar ajuda. Petits gestos que fan gran la nostra ciutat.
+                </p>
+<button type="button" class="bg-gradient-to-br from-primary to-primary-container text-white px-6 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all inline-flex items-center gap-3" id="openModalBtn">
+<span class="material-symbols-outlined">add_circle</span>
+                    Publicar un missatge
+                </button>
+</div>
+</div>
+</section>
+<!-- Filters Section -->
+<section class="max-w-7xl mx-auto px-8 mb-12">
+<h2 class="text-2xl font-black text-on-surface mb-5">Missatges publicats:</h2>
+<div class="flex flex-wrap gap-3 items-center" id="filter-buttons">
+<button data-tipus="Necessito ajuda"        class="filter-btn px-5 py-2 rounded-full font-bold text-sm text-[#0369a1] bg-[#E0F2FE] hover:shadow-lg hover:shadow-sky-200 transition-all active:scale-95">Necessito ajuda</button>
+<button data-tipus="Ofereixo ajuda"         class="filter-btn px-5 py-2 rounded-full font-bold text-sm text-[#15803d] bg-[#DCFCE7] hover:shadow-lg hover:shadow-emerald-200 transition-all active:scale-95">Ofereixo ajuda</button>
+<button data-tipus="Intercanvi/Donacions"   class="filter-btn px-5 py-2 rounded-full font-bold text-sm text-[#854d0e] bg-[#FEF9C3] hover:shadow-lg hover:shadow-yellow-200 transition-all active:scale-95">Intercanvi/Donacions</button>
+<button data-tipus="Activitats/Socialització" class="filter-btn px-5 py-2 rounded-full font-bold text-sm text-[#7e22ce] bg-[#F3E8FF] hover:shadow-lg hover:shadow-purple-200 transition-all active:scale-95">Activitats/Socialització</button>
+</div>
+</section>
+<!-- Cards Grid -->
+<section class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="favors-grid">
+<!-- Card 1 -->
+<div class="p-8 rounded-[2rem] relative transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-sky-900/10 flex flex-col h-full bg-[#E0F2FE]">
+<button class="absolute top-6 right-6 w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center hover:bg-error hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<div class="mb-4">
+<span class="text-[11px] font-black tracking-[0.15em] text-[#0369a1] bg-white/60 px-4 py-1.5 rounded-full uppercase">Necessito ajuda</span>
+</div>
+<h3 class="text-2xl font-black mb-3 text-on-surface leading-tight">Acompanyament al metge</h3>
+<p class="text-on-surface-variant mb-8 line-clamp-3 leading-relaxed font-medium">Necessito algú que pugui acompanyar a la meva àvia al CAP de Terrassa aquest dimecres al matí.</p>
+<div class="mt-auto space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center font-black text-on-secondary-container text-lg">MJ</div>
+<div>
+<p class="font-black text-on-surface">Maria Josepa</p>
+<p class="text-xs text-on-surface-variant flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-sm">location_on</span> Terrassa
+                            </p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-t border-sky-200/50">
+<div>
+<p class="text-[10px] text-sky-700/60 uppercase font-black tracking-widest">Publicat</p>
+<p class="text-sm font-bold">12/05/2024</p>
+</div>
+<div>
+<p class="text-[10px] text-sky-700/60 uppercase font-black tracking-widest">Caduca</p>
+<p class="text-sm font-bold text-error">15/05/2024</p>
+</div>
+</div>
+<button class="w-full py-4 rounded-2xl bg-[#25D366] text-white font-black flex items-center justify-center gap-3 hover:brightness-95 hover:shadow-lg hover:shadow-emerald-500/20 transition-all">
+<span class="material-symbols-outlined">chat</span>
+                        Contactar
+                    </button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-8 rounded-[2rem] relative transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-emerald-900/10 flex flex-col h-full bg-[#DCFCE7]">
+<button class="absolute top-6 right-6 w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center hover:bg-error hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<div class="mb-4">
+<span class="text-[11px] font-black tracking-[0.15em] text-[#15803d] bg-white/60 px-4 py-1.5 rounded-full uppercase">Ofereixo ajuda</span>
+</div>
+<h3 class="text-2xl font-black mb-3 text-on-surface leading-tight">Classes d'Anglès</h3>
+<p class="text-on-surface-variant mb-8 line-clamp-3 leading-relaxed font-medium">Sóc estudiant universitari i m'ofereixo per fer reforç d'anglès a nens de primària o ESO.</p>
+<div class="mt-auto space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-container flex items-center justify-center font-black text-on-tertiary-container text-lg">JP</div>
+<div>
+<p class="font-black text-on-surface">Joan P.</p>
+<p class="text-xs text-on-surface-variant flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-sm">location_on</span> Sabadell
+                            </p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-t border-emerald-200/50">
+<div>
+<p class="text-[10px] text-emerald-700/60 uppercase font-black tracking-widest">Publicat</p>
+<p class="text-sm font-bold">10/05/2024</p>
+</div>
+<div>
+<p class="text-[10px] text-emerald-700/60 uppercase font-black tracking-widest">Caduca</p>
+<p class="text-sm font-bold">30/06/2024</p>
+</div>
+</div>
+<button class="w-full py-4 rounded-2xl bg-[#25D366] text-white font-black flex items-center justify-center gap-3 hover:brightness-95 hover:shadow-lg hover:shadow-emerald-500/20 transition-all">
+<span class="material-symbols-outlined">chat</span>
+                        Contactar
+                    </button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="p-8 rounded-[2rem] relative transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-yellow-900/10 flex flex-col h-full bg-[#FEF9C3]">
+<button class="absolute top-6 right-6 w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center hover:bg-error hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<div class="mb-4">
+<span class="text-[11px] font-black tracking-[0.15em] text-[#854d0e] bg-white/60 px-4 py-1.5 rounded-full uppercase">Donacions</span>
+</div>
+<h3 class="text-2xl font-black mb-3 text-on-surface leading-tight">Bressol de fusta</h3>
+<p class="text-on-surface-variant mb-8 line-clamp-3 leading-relaxed font-medium">Dono un bressol de fusta en molt bon estat. Ja no el fem servir i ens agradaria que algú l'aprofités.</p>
+<div class="mt-auto space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center font-black text-on-primary-container text-lg">CA</div>
+<div>
+<p class="font-black text-on-surface">Carla Amat</p>
+<p class="text-xs text-on-surface-variant flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-sm">location_on</span> Terrassa
+                            </p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-t border-yellow-200/50">
+<div>
+<p class="text-[10px] text-yellow-700/60 uppercase font-black tracking-widest">Publicat</p>
+<p class="text-sm font-bold">13/05/2024</p>
+</div>
+<div>
+<p class="text-[10px] text-yellow-700/60 uppercase font-black tracking-widest">Caduca</p>
+<p class="text-sm font-bold text-error">20/05/2024</p>
+</div>
+</div>
+<button class="w-full py-4 rounded-2xl bg-[#25D366] text-white font-black flex items-center justify-center gap-3 hover:brightness-95 hover:shadow-lg hover:shadow-emerald-500/20 transition-all">
+<span class="material-symbols-outlined">chat</span>
+                        Contactar
+                    </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Modal Overlay (Integrated from Screen 7) -->
+<div class="fixed inset-0 z-[100] modal-overlay hidden flex items-center justify-center p-4 md:p-8" id="publishModal">
+<!-- Modal Container -->
+<div class="bg-surface-container-lowest w-full max-w-2xl max-h-[90vh] rounded-[2rem] shadow-2xl flex flex-col overflow-hidden border border-white/20 animate-in fade-in zoom-in duration-300">
+<!-- Modal Header -->
+<div class="px-8 pt-8 pb-4 flex justify-between items-start">
+<div>
+<h2 class="text-2xl md:text-3xl font-black tracking-tight text-on-surface">Publicar un missatge</h2>
+<p class="text-on-surface-variant mt-1 font-semibold">Connecta amb la teva comunitat i rep ajuda o ofereix-la.</p>
+</div>
+<button type="button" class="p-2 hover:bg-surface-container rounded-full transition-colors" id="closeModalBtn">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</div>
+<!-- Modal Content (Scrollable) -->
+<form id="publish-form" class="flex-1 overflow-y-auto px-8 py-4 custom-scroll space-y-6">
+<!-- Field 1 & 2 Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block text-[11px] font-black tracking-widest text-on-surface-variant uppercase">El teu nom</label>
+<input class="w-full px-5 py-4 rounded-2xl bg-surface-container-highest border-transparent focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/60 outline-none" placeholder="Ex: Marc Sala" type="text" id="nom"/>
+</div>
+<div class="space-y-2">
+<label class="block text-[11px] font-black tracking-widest text-on-surface-variant uppercase">Tipus de missatge</label>
+<select id="tipus" class="w-full px-5 py-4 rounded-2xl bg-surface-container-highest border-transparent focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all text-on-surface outline-none appearance-none">
+<option>Necessito ajuda</option>
+<option>Ofereixo ajuda</option>
+<option>Intercanvi/Donacions</option>
+<option>Activitats/Socialització</option>
+</select>
+</div>
+</div>
+<!-- Field 3 -->
+<div class="space-y-2">
+<label class="block text-[11px] font-black tracking-widest text-on-surface-variant uppercase">Títol</label>
+<input class="w-full px-5 py-4 rounded-2xl bg-surface-container-highest border-transparent focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/60 outline-none" placeholder="Ex: Ajuda per muntar un moble" type="text" id="titol"/>
+</div>
+<!-- Field 4 -->
+<div class="space-y-2">
+<label class="block text-[11px] font-black tracking-widest text-on-surface-variant uppercase">Explica els detalls</label>
+<textarea id="descripcio" class="w-full px-5 py-4 rounded-2xl bg-surface-container-highest border-transparent focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/60 resize-none outline-none" placeholder="Descriu el missatge amb detall..." rows="4"></textarea>
+</div>
+<!-- Field 5 & 6 Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block text-[11px] font-black tracking-widest text-on-surface-variant uppercase">WhatsApp de contacte (11 dígits)</label>
+<input class="w-full px-5 py-4 rounded-2xl bg-surface-container-highest border-transparent focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/60 outline-none" placeholder="34600112233" type="tel" id="whatsapp"/>
+<p class="text-[10px] text-on-surface-variant/70 italic px-1">Ex: 34600112233 (sense espais)</p>
+</div>
+<div class="space-y-2">
+<label class="block text-[11px] font-black tracking-widest text-on-surface-variant uppercase">Localitat</label>
+<select class="w-full px-5 py-4 rounded-2xl bg-surface-container-highest border-transparent focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all text-on-surface outline-none appearance-none" id="localitat">
+<option value="Terrassa">Terrassa</option>
+<option value="Altres localitats">Altres localitats</option>
+</select>
+</div>
+</div>
+<!-- Field 6 - Dynamic Appear -->
+<div class="space-y-2 hidden" id="extraLocContainer">
+<label class="block text-[11px] font-black tracking-widest text-on-surface-variant uppercase">Especifica la localitat</label>
+<input class="w-full px-5 py-4 rounded-2xl bg-tertiary-container/30 border-transparent focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/60 outline-none" placeholder="Nom del municipi" type="text" id="altra-localitat"/>
+</div>
+<!-- Field 7 & 8 Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-4">
+<div class="space-y-2">
+<label class="block text-[11px] font-black tracking-widest text-on-surface-variant uppercase">Data de venciment</label>
+<input class="w-full px-5 py-4 rounded-2xl bg-surface-container-highest border-transparent focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all text-on-surface outline-none" type="date" id="venciment"/>
+</div>
+<div class="space-y-2">
+<label class="block text-[11px] font-black tracking-widest text-on-surface-variant uppercase">Codi Secret</label>
+<input class="w-full px-5 py-4 rounded-2xl bg-surface-container-highest border-transparent focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all text-center tracking-[1em] font-black placeholder:text-outline/60 outline-none" maxlength="4" placeholder="****" type="password" id="codi"/>
+<p class="text-[10px] text-on-surface-variant/70 px-1">Codi de 4 dígits per gestionar el missatge</p>
+</div>
+</div>
+</form>
+<!-- Modal Footer -->
+<div class="p-8 bg-surface-container-low/50 flex flex-col sm:flex-row gap-3 items-center justify-end">
+<button class="w-full sm:w-auto px-10 py-4 rounded-2xl text-on-surface font-black hover:bg-surface-container transition-all active:scale-95" id="cancelModalBtn" type="button">
+                Cancel·lar
+            </button>
+<button class="w-full sm:w-auto px-12 py-4 rounded-2xl bg-gradient-to-br from-primary to-primary-container text-white font-black shadow-lg shadow-primary/20 hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all" type="submit" form="publish-form">
+                Publicar missatge
+            </button>
+</div>
+</div>
+</div>
+<script>
+    const modal = document.getElementById('publishModal');
+    const openBtn = document.getElementById('openModalBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const cancelBtn = document.getElementById('cancelModalBtn');
+    const locSelect = document.getElementById('localitat');
+    const extraLoc = document.getElementById('extraLocContainer');
+
+    function openModal() {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    cancelBtn.addEventListener('click', closeModal);
+
+    locSelect.addEventListener('change', function() {
+        if (this.value === 'Altres localitats') {
+            extraLoc.classList.remove('hidden');
+        } else {
+            extraLoc.classList.add('hidden');
+        }
+    });
+
+    // Close on outside click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+</script>
+
+
+
+<script>
+  // ============================================================
+  // CONFIGURACIÓ AIRTABLE — omple el token aquí
+  // ============================================================
+  const AIRTABLE_TOKEN = "patpUza49ypnL8EPQ.d9552d4ede21d7b77441ae3a03f0ae951a85552fef2785ebab8f9f6b577d57dd"; // ← Enganxa aquí el teu Personal Access Token
+  const BASE_ID        = "appC9AFAxKuIJgdFH";
+  const TABLE_NAME     = "Favors";
+
+  // Helper: capçaleres reutilitzables
+  function airtableHeaders() {
+    return {
+      Authorization: `Bearer ${AIRTABLE_TOKEN}`,
+      "Content-Type": "application/json"
+    };
+  }
+
+  // ============================================================
+  // 1. LLEGIR I MOSTRAR ELS FAVORS
+  // ============================================================
+  async function fetchFavors() {
+    if (!AIRTABLE_TOKEN) {
+      console.warn("⚠️ AIRTABLE_TOKEN buit — no es carreguen dades.");
+      return;
+    }
+    const url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}?sort[0][field]=CreatedTime&sort[0][direction]=desc`;
+    try {
+      const response = await fetch(url, { headers: airtableHeaders() });
+      if (!response.ok) {
+        const err = await response.json();
+        console.error("Error Airtable (GET):", err);
+        return;
+      }
+      const data = await response.json();
+      totsElsRegistres = data.records || [];
+      renderCards(totsElsRegistres);
+    } catch (error) {
+      console.error("Error de xarxa carregant favors:", error);
+    }
+  }
+
+  // Mapa de tipus → colors de targeta
+  const TIPUS_ESTILS = {
+    "Necessito ajuda":        { bg: "#E0F2FE", badge: "text-[#0369a1] bg-white/60", border: "border-sky-200/50",     label: "text-sky-700/60"     },
+    "Ofereixo ajuda":         { bg: "#DCFCE7", badge: "text-[#15803d] bg-white/60", border: "border-emerald-200/50", label: "text-emerald-700/60" },
+    "Intercanvi/Donacions":   { bg: "#FEF9C3", badge: "text-[#854d0e] bg-white/60", border: "border-yellow-200/50",  label: "text-yellow-700/60"  },
+    "Activitats/Socialització":{ bg: "#F3E8FF", badge: "text-[#7e22ce] bg-white/60", border: "border-purple-200/50",  label: "text-purple-700/60"  },
+  };
+
+  function getInitials(name) {
+    if (!name) return "??";
+    return name.trim().split(/\s+/).map(w => w[0].toUpperCase()).slice(0, 2).join("");
+  }
+
+  function renderCards(records) {
+    const grid = document.getElementById('favors-grid');
+    grid.innerHTML = "";
+
+    const oberts = records.filter(r => r.fields.Status === "obert");
+    const visibles = filtrActiu ? oberts.filter(r => r.fields.Type === filtrActiu) : oberts;
+
+    if (visibles.length === 0) {
+      grid.innerHTML = `<p class="col-span-3 text-center text-on-surface-variant font-semibold py-16">No hi ha missatges ${filtrActiu ? 'de tipus "' + filtrActiu + '"' : 'oberts'} ara mateix.</p>`;
+      return;
+    }
+
+    visibles.forEach(record => {
+      const f = record.fields;
+      const estil = TIPUS_ESTILS[f.Type] || TIPUS_ESTILS["Necessito ajuda"];
+      const localitat = f.Locality === "Altres localitats" ? (f.OtherLocality || "Altres") : (f.Locality || "");
+      const initials  = getInitials(f.Name);
+      // Guardem el codi com a string per comparar correctament
+      const codiEscapat = String(f.SecretCode || "").replace(/'/g, "\\'");
+
+      const card = document.createElement('div');
+      card.className = "p-8 rounded-[2rem] relative transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl flex flex-col h-full";
+      card.style.background = estil.bg;
+
+      card.innerHTML = `
+        <button
+          onclick="comprovarCodi('${record.id}', '${codiEscapat}')"
+          class="absolute top-6 right-6 w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center hover:bg-error hover:text-white transition-all duration-300">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+        <div class="mb-4">
+          <span class="text-[11px] font-black tracking-[0.15em] ${estil.badge} px-4 py-1.5 rounded-full uppercase">${f.Type || ""}</span>
+        </div>
+        <h3 class="text-2xl font-black mb-3 text-on-surface leading-tight">${f.Title || "(Sense títol)"}</h3>
+        <p class="text-on-surface-variant mb-8 line-clamp-3 leading-relaxed font-medium">${f.Description || ""}</p>
+        <div class="mt-auto space-y-6">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center font-black text-on-secondary-container text-lg">${initials}</div>
+            <div>
+              <p class="font-black text-on-surface">${f.Name || "Anònim"}</p>
+              <p class="text-xs text-on-surface-variant flex items-center gap-1 font-bold">
+                <span class="material-symbols-outlined text-sm">location_on</span> ${localitat}
+              </p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 py-4 border-t ${estil.border}">
+            <div>
+              <p class="text-[10px] ${estil.label} uppercase font-black tracking-widest">Caduca</p>
+              <p class="text-sm font-bold">${f.ExpiryDate || "—"}</p>
+            </div>
+          </div>
+          <a href="https://wa.me/${f.Phone || ""}" target="_blank"
+             class="w-full py-4 rounded-2xl bg-[#25D366] text-white font-black flex items-center justify-center gap-3 hover:brightness-95 hover:shadow-lg hover:shadow-emerald-500/20 transition-all">
+            <span class="material-symbols-outlined">chat</span> Contactar
+          </a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  // ============================================================
+  // 2. ENVIAR UN NOU FAVOR
+  // ============================================================
+  document.getElementById('publish-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!AIRTABLE_TOKEN) {
+      alert("⚠️ Cal configurar el token d'Airtable al codi.");
+      return;
+    }
+
+    // Recollim i validem els camps
+    const titol      = document.getElementById('titol').value.trim();
+    const descripcio = document.getElementById('descripcio').value.trim();
+    const nom        = document.getElementById('nom').value.trim();
+    const phone      = document.getElementById('whatsapp').value.trim();
+    const tipus      = document.getElementById('tipus').value;
+    const localitat  = document.getElementById('localitat').value;
+    const altraLoc   = document.getElementById('altra-localitat')?.value.trim() || "";
+    const venciment  = document.getElementById('venciment').value;
+    const codiRaw    = document.getElementById('codi').value.trim();
+
+    if (!titol || !descripcio || !nom || !phone || !codiRaw) {
+      alert("Si us plau, omple tots els camps obligatoris.");
+      return;
+    }
+    if (!/^\d{4}$/.test(codiRaw)) {
+      alert("El codi secret ha de ser exactament 4 dígits.");
+      return;
+    }
+
+    const payload = {
+      fields: {
+        Title:         titol,
+        Description:   descripcio,
+        Name:          nom,
+        Phone:         phone,
+        Type:          tipus,
+        Locality:      localitat,
+        OtherLocality: altraLoc,
+        ExpiryDate:    venciment,
+        SecretCode:    parseInt(codiRaw, 10),
+        Status:        "obert"
+      }
+    };
+
+    console.log("📤 Enviant a Airtable:", payload);
+
+    try {
+      const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`, {
+        method: "POST",
+        headers: airtableHeaders(),
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        console.error("❌ Error Airtable (POST):", result);
+        alert(`Error en publicar: ${result?.error?.message || "Revisa la consola per més detalls."}`);
+        return;
+      }
+
+      console.log("✅ Registre creat:", result);
+      alert("✅ Missatge publicat amb èxit!");
+      e.target.reset();
+      document.getElementById('publishModal').classList.add('hidden');
+      document.body.style.overflow = '';
+      fetchFavors();
+    } catch (error) {
+      console.error("❌ Error de xarxa en publicar:", error);
+      alert("Error de connexió. Comprova la consola.");
+    }
+  });
+
+  // ============================================================
+  // 3. TANCAR UN FAVOR (creu vermella)
+  // ============================================================
+  async function comprovarCodi(recordId, codiCorrecte) {
+    const inputCodi = prompt("Introdueix el teu codi secret de 4 xifres per tancar aquest favor:");
+    if (inputCodi === null) return; // l'usuari ha cancel·lat
+
+    if (parseInt(inputCodi, 10) === parseInt(codiCorrecte, 10) || inputCodi === "9999") {
+      try {
+        const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}/${recordId}`, {
+          method: "PATCH",
+          headers: airtableHeaders(),
+          body: JSON.stringify({ fields: { Status: "tancat" } })
+        });
+        if (!response.ok) {
+          const err = await response.json();
+          console.error("❌ Error tancant favor:", err);
+          alert("Error en tancar el favor. Revisa la consola.");
+          return;
+        }
+        alert("✅ Favor tancat correctament.");
+        fetchFavors();
+      } catch (error) {
+        console.error("❌ Error de xarxa tancant favor:", error);
+        alert("Error de connexió.");
+      }
+    } else {
+      alert("❌ Codi incorrecte.");
+    }
+  }
+
+  // ============================================================
+  // Inicialització
+  // ============================================================
+  fetchFavors();
+  // ============================================================
+  let totsElsRegistres = []; // guardem tots per poder filtrar
+  let filtrActiu = null;
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tipus = btn.dataset.tipus;
+      if (filtrActiu === tipus) {
+        // Segon clic: desactivar filtre → mostrar tots
+        filtrActiu = null;
+        btn.classList.remove('actiu');
+      } else {
+        // Activar aquest filtre
+        filtrActiu = tipus;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('actiu'));
+        btn.classList.add('actiu');
+      }
+      renderCards(totsElsRegistres);
+    });
+  });
+</script>
+
+
+</body></html>
