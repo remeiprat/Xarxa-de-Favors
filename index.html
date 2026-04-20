@@ -98,6 +98,9 @@
         }
         .filter-btn { opacity: 0.55; }
         .filter-btn.actiu { opacity: 1; box-shadow: 0 0 0 2.5px currentColor; }
+        .llegir-mes-btn { display: none; }
+        .line-clamp-3 + .llegir-mes-btn,
+        .desc-truncated + .llegir-mes-btn { display: inline-flex; }
     </style>
 </head>
 <body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
@@ -146,125 +149,20 @@
 </section>
 <!-- Filters Section -->
 <section class="max-w-7xl mx-auto px-8 mb-12">
-<h2 class="text-2xl font-black text-on-surface mb-5">Missatges publicats:</h2>
 <div class="flex flex-wrap gap-3 items-center" id="filter-buttons">
-<button data-tipus="Necessito ajuda"        class="filter-btn px-5 py-2 rounded-full font-bold text-sm text-[#0369a1] bg-[#E0F2FE] hover:shadow-lg hover:shadow-sky-200 transition-all active:scale-95">Necessito ajuda</button>
-<button data-tipus="Ofereixo ajuda"         class="filter-btn px-5 py-2 rounded-full font-bold text-sm text-[#15803d] bg-[#DCFCE7] hover:shadow-lg hover:shadow-emerald-200 transition-all active:scale-95">Ofereixo ajuda</button>
-<button data-tipus="Intercanvi/Donacions"   class="filter-btn px-5 py-2 rounded-full font-bold text-sm text-[#854d0e] bg-[#FEF9C3] hover:shadow-lg hover:shadow-yellow-200 transition-all active:scale-95">Intercanvi/Donacions</button>
-<button data-tipus="Activitats/Socialització" class="filter-btn px-5 py-2 rounded-full font-bold text-sm text-[#7e22ce] bg-[#F3E8FF] hover:shadow-lg hover:shadow-purple-200 transition-all active:scale-95">Activitats/Socialització</button>
+<button data-tipus="Necessito ajuda"        class="filter-btn inline-flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm text-[#0369a1] bg-[#E0F2FE] hover:shadow-lg hover:shadow-sky-200 transition-all active:scale-95"><span class="material-symbols-outlined text-base" style="font-size:16px">filter_list</span>Necessito ajuda</button>
+<button data-tipus="Ofereixo ajuda"         class="filter-btn inline-flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm text-[#15803d] bg-[#DCFCE7] hover:shadow-lg hover:shadow-emerald-200 transition-all active:scale-95"><span class="material-symbols-outlined text-base" style="font-size:16px">filter_list</span>Ofereixo ajuda</button>
+<button data-tipus="Intercanvi/Donacions"   class="filter-btn inline-flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm text-[#854d0e] bg-[#FEF9C3] hover:shadow-lg hover:shadow-yellow-200 transition-all active:scale-95"><span class="material-symbols-outlined text-base" style="font-size:16px">filter_list</span>Intercanvi/Donacions</button>
+<button data-tipus="Activitats/Socialització" class="filter-btn inline-flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm text-[#7e22ce] bg-[#F3E8FF] hover:shadow-lg hover:shadow-purple-200 transition-all active:scale-95"><span class="material-symbols-outlined text-base" style="font-size:16px">filter_list</span>Activitats/Socialització</button>
 </div>
+<h2 class="text-2xl font-black text-on-surface mt-8 flex items-center gap-3">
+  <span id="missatges-count" class="inline-flex items-center justify-center min-w-[2rem] h-8 px-2.5 rounded-full bg-primary text-white text-sm font-black">0</span>
+  Missatges publicats:
+</h2>
 </section>
 <!-- Cards Grid -->
 <section class="max-w-7xl mx-auto px-8">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="favors-grid">
-<!-- Card 1 -->
-<div class="p-8 rounded-[2rem] relative transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-sky-900/10 flex flex-col h-full bg-[#E0F2FE]">
-<button class="absolute top-6 right-6 w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center hover:bg-error hover:text-white transition-all duration-300">
-<span class="material-symbols-outlined text-[20px]">close</span>
-</button>
-<div class="mb-4">
-<span class="text-[11px] font-black tracking-[0.15em] text-[#0369a1] bg-white/60 px-4 py-1.5 rounded-full uppercase">Necessito ajuda</span>
-</div>
-<h3 class="text-2xl font-black mb-3 text-on-surface leading-tight">Acompanyament al metge</h3>
-<p class="text-on-surface-variant mb-8 line-clamp-3 leading-relaxed font-medium">Necessito algú que pugui acompanyar a la meva àvia al CAP de Terrassa aquest dimecres al matí.</p>
-<div class="mt-auto space-y-6">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center font-black text-on-secondary-container text-lg">MJ</div>
-<div>
-<p class="font-black text-on-surface">Maria Josepa</p>
-<p class="text-xs text-on-surface-variant flex items-center gap-1 font-bold">
-<span class="material-symbols-outlined text-sm">location_on</span> Terrassa
-                            </p>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-4 py-4 border-t border-sky-200/50">
-<div>
-<p class="text-[10px] text-sky-700/60 uppercase font-black tracking-widest">Publicat</p>
-<p class="text-sm font-bold">12/05/2024</p>
-</div>
-<div>
-<p class="text-[10px] text-sky-700/60 uppercase font-black tracking-widest">Caduca</p>
-<p class="text-sm font-bold text-error">15/05/2024</p>
-</div>
-</div>
-<button class="w-full py-4 rounded-2xl bg-[#25D366] text-white font-black flex items-center justify-center gap-3 hover:brightness-95 hover:shadow-lg hover:shadow-emerald-500/20 transition-all">
-<span class="material-symbols-outlined">chat</span>
-                        Contactar
-                    </button>
-</div>
-</div>
-<!-- Card 2 -->
-<div class="p-8 rounded-[2rem] relative transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-emerald-900/10 flex flex-col h-full bg-[#DCFCE7]">
-<button class="absolute top-6 right-6 w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center hover:bg-error hover:text-white transition-all duration-300">
-<span class="material-symbols-outlined text-[20px]">close</span>
-</button>
-<div class="mb-4">
-<span class="text-[11px] font-black tracking-[0.15em] text-[#15803d] bg-white/60 px-4 py-1.5 rounded-full uppercase">Ofereixo ajuda</span>
-</div>
-<h3 class="text-2xl font-black mb-3 text-on-surface leading-tight">Classes d'Anglès</h3>
-<p class="text-on-surface-variant mb-8 line-clamp-3 leading-relaxed font-medium">Sóc estudiant universitari i m'ofereixo per fer reforç d'anglès a nens de primària o ESO.</p>
-<div class="mt-auto space-y-6">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-tertiary-container flex items-center justify-center font-black text-on-tertiary-container text-lg">JP</div>
-<div>
-<p class="font-black text-on-surface">Joan P.</p>
-<p class="text-xs text-on-surface-variant flex items-center gap-1 font-bold">
-<span class="material-symbols-outlined text-sm">location_on</span> Sabadell
-                            </p>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-4 py-4 border-t border-emerald-200/50">
-<div>
-<p class="text-[10px] text-emerald-700/60 uppercase font-black tracking-widest">Publicat</p>
-<p class="text-sm font-bold">10/05/2024</p>
-</div>
-<div>
-<p class="text-[10px] text-emerald-700/60 uppercase font-black tracking-widest">Caduca</p>
-<p class="text-sm font-bold">30/06/2024</p>
-</div>
-</div>
-<button class="w-full py-4 rounded-2xl bg-[#25D366] text-white font-black flex items-center justify-center gap-3 hover:brightness-95 hover:shadow-lg hover:shadow-emerald-500/20 transition-all">
-<span class="material-symbols-outlined">chat</span>
-                        Contactar
-                    </button>
-</div>
-</div>
-<!-- Card 3 -->
-<div class="p-8 rounded-[2rem] relative transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-yellow-900/10 flex flex-col h-full bg-[#FEF9C3]">
-<button class="absolute top-6 right-6 w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center hover:bg-error hover:text-white transition-all duration-300">
-<span class="material-symbols-outlined text-[20px]">close</span>
-</button>
-<div class="mb-4">
-<span class="text-[11px] font-black tracking-[0.15em] text-[#854d0e] bg-white/60 px-4 py-1.5 rounded-full uppercase">Donacions</span>
-</div>
-<h3 class="text-2xl font-black mb-3 text-on-surface leading-tight">Bressol de fusta</h3>
-<p class="text-on-surface-variant mb-8 line-clamp-3 leading-relaxed font-medium">Dono un bressol de fusta en molt bon estat. Ja no el fem servir i ens agradaria que algú l'aprofités.</p>
-<div class="mt-auto space-y-6">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center font-black text-on-primary-container text-lg">CA</div>
-<div>
-<p class="font-black text-on-surface">Carla Amat</p>
-<p class="text-xs text-on-surface-variant flex items-center gap-1 font-bold">
-<span class="material-symbols-outlined text-sm">location_on</span> Terrassa
-                            </p>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-4 py-4 border-t border-yellow-200/50">
-<div>
-<p class="text-[10px] text-yellow-700/60 uppercase font-black tracking-widest">Publicat</p>
-<p class="text-sm font-bold">13/05/2024</p>
-</div>
-<div>
-<p class="text-[10px] text-yellow-700/60 uppercase font-black tracking-widest">Caduca</p>
-<p class="text-sm font-bold text-error">20/05/2024</p>
-</div>
-</div>
-<button class="w-full py-4 rounded-2xl bg-[#25D366] text-white font-black flex items-center justify-center gap-3 hover:brightness-95 hover:shadow-lg hover:shadow-emerald-500/20 transition-all">
-<span class="material-symbols-outlined">chat</span>
-                        Contactar
-                    </button>
-</div>
-</div>
 </div>
 </section>
 </main>
@@ -388,9 +286,44 @@
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
     });
+
+    // Success modal close
+    document.getElementById('closeSuccessModal').addEventListener('click', () => {
+        document.getElementById('successModal').classList.add('hidden');
+        document.body.style.overflow = '';
+    });
+    document.getElementById('successModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('successModal')) {
+            document.getElementById('successModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+    });
 </script>
 
 
+
+<!-- Modal Èxit WhatsApp -->
+<div id="successModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center modal-overlay px-4">
+  <div class="bg-white rounded-[2rem] shadow-2xl max-w-md w-full p-8 flex flex-col items-center gap-6 text-center">
+    <div class="w-20 h-20 rounded-full bg-secondary-container flex items-center justify-center">
+      <span class="material-symbols-outlined text-5xl text-secondary">check_circle</span>
+    </div>
+    <div>
+      <h3 class="text-2xl font-black text-on-surface mb-2">Missatge publicat! 🎉</h3>
+      <p class="text-on-surface-variant font-medium leading-relaxed">Ara pots avisar al grup de WhatsApp perquè tothom ho vegi.</p>
+    </div>
+    <a id="whatsappShareBtn"
+       href="#"
+       target="_blank"
+       class="w-full py-4 rounded-2xl bg-[#25D366] text-white font-black flex items-center justify-center gap-3 hover:brightness-95 hover:shadow-lg hover:shadow-emerald-500/20 transition-all text-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Avisa el grup de WhatsApp
+    </a>
+    <button id="closeSuccessModal" class="text-on-surface-variant font-semibold hover:text-on-surface transition-colors">
+      Ara no
+    </button>
+  </div>
+</div>
 
 <script>
   // ============================================================
@@ -452,6 +385,8 @@
     const oberts = records.filter(r => r.fields.Status === "obert");
     const visibles = filtrActiu ? oberts.filter(r => r.fields.Type === filtrActiu) : oberts;
 
+    document.getElementById('missatges-count').textContent = visibles.length;
+
     if (visibles.length === 0) {
       grid.innerHTML = `<p class="col-span-3 text-center text-on-surface-variant font-semibold py-16">No hi ha missatges ${filtrActiu ? 'de tipus "' + filtrActiu + '"' : 'oberts'} ara mateix.</p>`;
       return;
@@ -465,6 +400,7 @@
       // Guardem el codi com a string per comparar correctament
       const codiEscapat = String(f.SecretCode || "").replace(/'/g, "\\'");
 
+      const cardId = `desc-${record.id}`;
       const card = document.createElement('div');
       card.className = "p-8 rounded-[2rem] relative transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl flex flex-col h-full";
       card.style.background = estil.bg;
@@ -479,7 +415,12 @@
           <span class="text-[11px] font-black tracking-[0.15em] ${estil.badge} px-4 py-1.5 rounded-full uppercase">${f.Type || ""}</span>
         </div>
         <h3 class="text-2xl font-black mb-3 text-on-surface leading-tight">${f.Title || "(Sense títol)"}</h3>
-        <p class="text-on-surface-variant mb-8 line-clamp-3 leading-relaxed font-medium">${f.Description || ""}</p>
+        <div class="mb-6">
+          <p id="${cardId}" class="text-on-surface-variant leading-relaxed font-medium" style="display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">${f.Description || ""}</p>
+          <button onclick="toggleDesc('${cardId}', this)" class="mt-2 text-xs font-black flex items-center gap-1 opacity-60 hover:opacity-100 transition-opacity" style="color:inherit;">
+            <span class="material-symbols-outlined text-sm" style="vertical-align:middle;">expand_more</span> Llegir més
+          </button>
+        </div>
         <div class="mt-auto space-y-6">
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center font-black text-on-secondary-container text-lg">${initials}</div>
@@ -503,6 +444,17 @@
         </div>
       `;
       grid.appendChild(card);
+    });
+
+    // Amagar "Llegir més" en les targetes on el text ja cap sencer
+    requestAnimationFrame(() => {
+      visibles.forEach(record => {
+        const pEl = document.getElementById(`desc-${record.id}`);
+        if (pEl && pEl.scrollHeight <= pEl.clientHeight) {
+          const btn = pEl.nextElementSibling;
+          if (btn) btn.style.display = 'none';
+        }
+      });
     });
   }
 
@@ -570,10 +522,12 @@
       }
 
       console.log("✅ Registre creat:", result);
-      alert("✅ Missatge publicat amb èxit!");
       e.target.reset();
       document.getElementById('publishModal').classList.add('hidden');
-      document.body.style.overflow = '';
+      // Mostrar modal d'èxit amb botó WhatsApp
+      const msg = encodeURIComponent("Hola! ✨ Tenim un nou anunci al taulell de la Xarxa de Favors! 📢 Podeu mirar-lo aquí: https://remeiprat.github.io/Xarxa-de-Favors/ 🌟");
+      document.getElementById('whatsappShareBtn').href = "https://wa.me/?text=" + msg;
+      document.getElementById('successModal').classList.remove('hidden');
       fetchFavors();
     } catch (error) {
       console.error("❌ Error de xarxa en publicar:", error);
@@ -636,6 +590,21 @@
       renderCards(totsElsRegistres);
     });
   });
+
+  function toggleDesc(cardId, btn) {
+    const p = document.getElementById(cardId);
+    if (!p) return;
+    const expanded = p.style.webkitLineClamp === 'unset' || p.style.webkitLineClamp === '';
+    if (expanded) {
+      p.style.webkitLineClamp = '3';
+      p.style.overflow = 'hidden';
+      btn.innerHTML = '<span class="material-symbols-outlined text-sm" style="vertical-align:middle;">expand_more</span> Llegir més';
+    } else {
+      p.style.webkitLineClamp = 'unset';
+      p.style.overflow = 'visible';
+      btn.innerHTML = '<span class="material-symbols-outlined text-sm" style="vertical-align:middle;">expand_less</span> Llegir menys';
+    }
+  }
 </script>
 
 
