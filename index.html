@@ -608,4 +608,172 @@
 </script>
 
 
+<!-- Footer -->
+<footer class="mt-16 pb-10 text-center flex flex-wrap items-center justify-center gap-6">
+  <a href="https://wa.me/34606149649" target="_blank" class="text-sm font-bold text-on-surface-variant hover:text-on-surface flex items-center gap-1.5 transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#25D366" class="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Administradora
+  </a>
+  <span class="text-on-surface-variant opacity-30">|</span>
+  <a href="https://chat.whatsapp.com/Hyzwt9VMKILKqZYkbXpbqH" target="_blank" class="text-sm font-bold text-on-surface-variant hover:text-on-surface flex items-center gap-1.5 transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#25D366" class="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Comunitat
+  </a>
+  <span class="text-on-surface-variant opacity-30">|</span>
+  <button onclick="document.getElementById('normesModal').classList.remove('hidden')" class="text-sm font-bold text-on-surface-variant hover:text-on-surface underline underline-offset-4 transition-colors">
+    Normes d'ús
+  </button>
+  <span class="text-on-surface-variant opacity-30">|</span>
+  <button onclick="document.getElementById('guiaModal').classList.remove('hidden')" class="text-sm font-bold text-on-surface-variant hover:text-on-surface underline underline-offset-4 transition-colors">
+    Guia d'ús
+  </button>
+</footer>
+
+<!-- Modal Guia d'ús -->
+<div id="guiaModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center modal-overlay px-4">
+  <div class="bg-white rounded-[2rem] shadow-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden">
+    <div class="flex items-center justify-between px-8 py-6 border-b border-outline-variant">
+      <h2 class="text-xl font-black text-on-surface">📖 Guia d'ús de la Xarxa de Favors</h2>
+      <button onclick="document.getElementById('guiaModal').classList.add('hidden')" class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center hover:bg-error hover:text-white transition-all">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+    <div class="overflow-y-auto px-8 py-6 text-sm text-on-surface-variant leading-relaxed space-y-5 custom-scroll">
+
+      <p>Benvinguts a la guia pràctica de la nostra plataforma. Aquest document us ajudarà a navegar pel taulell d'anuncis i a publicar les vostres peticions o ofertes de manera correcta.</p>
+
+      <div>
+        <h3 class="font-black text-on-surface mb-2">1. Com consultar el Taulell d'Anuncis</h3>
+        <p class="mb-2">Quan entreu a la web, trobareu tots els missatges actius de la comunitat.</p>
+        <ul class="space-y-1 list-disc list-inside">
+          <li><strong>Filtres:</strong> A la part superior, podeu filtrar els missatges per categories (Necessito ajuda, Ofereixo ajuda, Intercanvi/Donacions, Activitats/Socialització).</li>
+          <li><strong>Comptador:</strong> Veureu un número que indica quants anuncis hi ha publicats segons el filtre que hagueu triat.</li>
+          <li><strong>Llegir detalls:</strong> Si un anunci té un text llarg, veureu el botó "Llegir més". Cliqueu-hi per desplegar tota la informació.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-black text-on-surface mb-2">2. Com connectar via WhatsApp</h3>
+        <p>Has vist algun missatge que t'interessa? Clica sobre "Contactar" del missatge i podràs obrir directament una conversa de WhatsApp amb aquella persona.</p>
+      </div>
+
+      <div>
+        <h3 class="font-black text-on-surface mb-2">3. Com publicar un anunci</h3>
+        <p class="mb-2">Per posar un anunci nou, heu d'omplir el formulari de publicació:</p>
+        <ol class="space-y-1 list-decimal list-inside">
+          <li><strong>Triar la Categoria:</strong> Seleccioneu el tipus de missatge (ajuda, oferta, donació o activitat).</li>
+          <li><strong>Títol o Resum:</strong> Escriviu una frase curta i clara (Exemple: "Necessito ajuda per moure un sofà").</li>
+          <li><strong>Descripció detallada:</strong> Expliqueu amb més calma què necessiteu o què oferiu.</li>
+          <li><strong>Telèfon de contacte:</strong> Escriviu el vostre telèfon amb el format 34600112233. Sense espais ni caràcters especials.</li>
+          <li><strong>Codi de Seguretat (Molt important):</strong> Inventeu-vos un codi de 4 números i anoteu-lo. El necessitareu per esborrar l'anunci.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h3 class="font-black text-on-surface mb-2">4. Com avisar al grup de WhatsApp</h3>
+        <p class="mb-2">Un cop hàgiu publicat l'anunci, veureu un botó verd per informar la comunitat.</p>
+        <ul class="space-y-1 list-disc list-inside">
+          <li>Si hi cliqueu, s'obrirà el vostre WhatsApp amb un missatge preparat per enviar al grup.</li>
+          <li>D'aquesta manera, les persones de la xarxa rebran un avís que hi ha una novetat al taulell.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-black text-on-surface mb-2">5. Com esborrar un anunci</h3>
+        <p class="mb-2">Per mantenir la xarxa útil, és obligatori esborrar els anuncis que ja no siguin necessaris:</p>
+        <ol class="space-y-1 list-decimal list-inside">
+          <li>Busqueu el vostre anunci al taulell.</li>
+          <li>Cliqueu sobre la creueta vermella (❌) a la cantonada del missatge.</li>
+          <li>El sistema us demanarà el codi de 4 números que vau introduir en publicar-lo.</li>
+          <li>Un cop posat el codi, el missatge desapareixerà automàticament.</li>
+        </ol>
+      </div>
+
+      <div class="bg-surface-variant rounded-2xl p-5">
+        <h3 class="font-black text-on-surface mb-2">💡 Consells de Seguretat i Privacitat</h3>
+        <ul class="space-y-1 list-disc list-inside">
+          <li><strong>Dades personals:</strong> Poseu només la informació de contacte necessària, ja que la web és visible per a tots els membres.</li>
+          <li><strong>Gestió privada:</strong> Un cop algú us contacti, gestioneu adreces o horaris per xat privat.</li>
+          <li><strong>Suport:</strong> Si teniu qualsevol dificultat tècnica o no recordeu el codi, poseu-vos en contacte amb l'administradora.</li>
+        </ul>
+      </div>
+
+      <p class="text-center font-bold text-on-surface pt-2">Gràcies per fer un bon ús d'aquesta eina i contribuir a fer créixer la Xarxa de Favors! 🤝✨</p>
+
+    </div>
+    <div class="px-8 py-5 border-t border-outline-variant">
+      <button onclick="document.getElementById('guiaModal').classList.add('hidden')" class="w-full py-3 rounded-2xl bg-primary text-white font-black hover:brightness-95 transition-all">
+        Entesos
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Normes d'ús -->
+<div id="normesModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center modal-overlay px-4">
+  <div class="bg-white rounded-[2rem] shadow-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden">
+    <div class="flex items-center justify-between px-8 py-6 border-b border-outline-variant">
+      <h2 class="text-xl font-black text-on-surface">Normativa de la "Xarxa de Favors"</h2>
+      <button onclick="document.getElementById('normesModal').classList.add('hidden')" class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center hover:bg-error hover:text-white transition-all">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+    <div class="overflow-y-auto px-8 py-6 text-sm text-on-surface-variant leading-relaxed space-y-5 custom-scroll">
+      <p>La Xarxa de Favors és una plataforma comunitària sense ànim de lucre destinada a fomentar l'ajuda mútua, el suport veïnal i l'intercanvi altruista. L'ús de la web implica l'acceptació de les següents normes:</p>
+      <div>
+        <h3 class="font-black text-on-surface mb-2">1. Naturalesa del Projecte</h3>
+        <ul class="space-y-1 list-disc list-inside">
+          <li><strong>Absència de lucre:</strong> Queda totalment prohibida qualsevol transacció econòmica. La Xarxa no és un lloc de compravenda ni de contractació de serveis.</li>
+          <li><strong>Caràcter voluntari:</strong> Totes les accions es realitzen de forma lliure i voluntària. Cap usuari està obligat a acceptar una petició si no ho desitja.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-black text-on-surface mb-2">2. Normes de Publicació de missatges al taulell de la Web</h3>
+        <ul class="space-y-1 list-disc list-inside">
+          <li><strong>Veracitat:</strong> Els usuaris es comprometen a publicar informació veraç i actualitzada.</li>
+          <li><strong>Manteniment:</strong> És responsabilitat de l'usuari retirar l'anunci (mitjançant el codi de seguretat de 4 xifres) un cop el favor s'hagi realitzat o l'objecte hagi estat lliurat.</li>
+          <li><strong>Contingut prohibit:</strong> No s'acceptaran anuncis que incloguin publicitat comercial o oferta de serveis professionals remunerats, propaganda política, religiosa o missatges discriminatoris, ni contingut ofensiu, groller o que vulneri la intimitat de tercers.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-black text-on-surface mb-2">3. Límits de l'Ajuda Mútua i Prevenció de l'Abús</h3>
+        <ul class="space-y-1 list-disc list-inside">
+          <li><strong>Favors puntuals vs. Serveis professionals:</strong> La Xarxa està pensada per a favors puntuals i suport entre els participants. No s'ha d'utilitzar per sol·licitar feines de gran envergadura que requereixin una qualificació professional o un manteniment continuat en el temps que pugui derivar en explotació del voluntari.</li>
+          <li><strong>Abús de demandes:</strong> L'administradora es reserva el dret de cridar l'atenció o limitar l'activitat d'aquells usuaris que facin peticions de manera desproporcionada i no col·laborin amb la comunitat.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-black text-on-surface mb-2">4. Responsabilitat i Seguretat</h3>
+        <ul class="space-y-1 list-disc list-inside">
+          <li><strong>Exempció de responsabilitat:</strong> La Xarxa de Favors actua exclusivament com un tauler d'anuncis per posar en contacte persones. L'administradora no es fa responsable de la qualitat dels favors realitzats, de l'estat dels objectes donats ni del comportament dels usuaris durant les trobades.</li>
+          <li><strong>Seguretat personal:</strong> Es recomana que les trobades per a intercanvis o favors es realitzin, preferiblement, en espais públics o en cercles coneguts.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-black text-on-surface mb-2">5. Gestió del Grup de WhatsApp</h3>
+        <ul class="space-y-1 list-disc list-inside">
+          <li><strong>Privacitat:</strong> Els acords logístics (adreces, horaris concrets, telèfons) s'han de gestionar sempre per missatge privat entre els interessats per protegir les dades personals de tots els membres.</li>
+          <li><strong>Comunicació:</strong> El xat del grup es reservarà exclusivament per a comunicacions de la Xarxa. Es prohibeix l'enviament de "cadenes", vídeos virals, notícies no verificades o qualsevol contingut que saturi el dispositiu dels usuaris.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-black text-on-surface mb-2">6. Protecció de Dades i Privacitat</h3>
+        <ul class="space-y-1 list-disc list-inside">
+          <li>En entrar a la Xarxa, l'usuari accepta que el seu nom i dades de contacte siguin visibles per a la resta de membres amb l'única finalitat de facilitar l'ajuda mútua.</li>
+          <li>Queda prohibit utilitzar les dades de contacte dels membres per a finalitats alienes a la Xarxa.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-black text-on-surface mb-2">7. Règim Sancionador</h3>
+        <p>L'administradora es reserva el dret d'eliminar qualsevol anunci que incompleixi aquestes normes i d'expulsar de la plataforma aquelles persones que mostrin conductes incíviques, abusives o que no respectin la filosofia del projecte.</p>
+      </div>
+    </div>
+    <div class="px-8 py-5 border-t border-outline-variant">
+      <button onclick="document.getElementById('normesModal').classList.add('hidden')" class="w-full py-3 rounded-2xl bg-primary text-white font-black hover:brightness-95 transition-all">
+        Entesos
+      </button>
+    </div>
+  </div>
+</div>
+
 </body></html>
