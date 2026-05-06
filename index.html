@@ -452,7 +452,7 @@ function toggleMobileMenu() {
               <p class="text-sm font-bold">${f.ExpiryDate || "—"}</p>
             </div>
           </div>
-          <a href="https://wa.me/${f.Phone || ""}?text=${encodeURIComponent(`Hola! He vist el teu missatge "${f.Title || ''}" publicat a la Xarxa de Favors. M'agradaria posar-me en contacte amb tu. 😊`)}" target="_blank"
+          <a href="https://wa.me/${f.Phone || ""}" target="_blank"
              class="w-full py-4 rounded-2xl bg-[#25D366] text-white font-black flex items-center justify-center gap-3 hover:brightness-95 hover:shadow-lg hover:shadow-emerald-500/20 transition-all">
             <span class="material-symbols-outlined">chat</span> Contactar
           </a>
@@ -562,7 +562,7 @@ function toggleMobileMenu() {
         const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}/${recordId}`, {
           method: "PATCH",
           headers: airtableHeaders(),
-          body: JSON.stringify({ fields: { Status: "tancat" } })
+          body: JSON.stringify({ fields: { Status: "tancat", "data de tancament": new Date().toISOString().split('T')[0] } })
         });
         if (!response.ok) {
           const err = await response.json();
