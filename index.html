@@ -107,7 +107,7 @@
 <!-- Navigation -->
 <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-surface-container/50">
 <div class="flex justify-between items-center px-8 h-20 max-w-7xl mx-auto w-full">
-<div class="text-2xl font-black bg-gradient-to-br from-primary to-primary-fixed bg-clip-text text-transparent tracking-tighter">
+<div class="text-2xl font-black bg-gradient-to-br from-primary to-primary-fixed bg-clip-text text-transparent tracking-tighter cursor-pointer select-none" onclick="obrirLoginAdmin()" title="">
             Xarxa de Favors
         </div>
 <div class="hidden md:flex gap-8 items-center">
@@ -310,11 +310,31 @@ function toggleMobileMenu() {
 
 
 
+
+<!-- Modal login admin (ocult) -->
+<div id="adminLoginModal" class="hidden fixed inset-0 z-[70] flex items-center justify-center modal-overlay px-4">
+  <div class="bg-white rounded-[2rem] shadow-2xl max-w-xs w-full p-8 flex flex-col items-center gap-5 text-center">
+    <div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center">
+      <span class="material-symbols-outlined text-4xl text-primary">admin_panel_settings</span>
+    </div>
+    <h3 class="text-xl font-black text-on-surface">Accés administradora</h3>
+    <input id="adminPasswordInput" type="password" placeholder="Contrasenya" maxlength="10"
+      class="w-full px-4 py-3 rounded-2xl border border-surface-container bg-surface text-on-surface font-semibold focus:outline-none focus:ring-2 focus:ring-primary text-center tracking-widest"
+      onkeydown="if(event.key==='Enter') validarAdmin()">
+    <button onclick="validarAdmin()" class="w-full py-3 rounded-2xl bg-primary text-white font-black hover:brightness-95 transition-all">
+      Entrar
+    </button>
+    <button onclick="document.getElementById('adminLoginModal').classList.add('hidden')" class="text-on-surface-variant font-semibold hover:text-on-surface transition-colors text-sm">
+      Cancel·lar
+    </button>
+  </div>
+</div>
+
 <script>
   // ============================================================
   // CONFIGURACIÓ AIRTABLE — omple el token aquí
   // ============================================================
-  const AIRTABLE_TOKEN = "patpUza49ypnL8EPQ.d9552d4ede21d7b77441ae3a03f0ae951a85552fef2785ebab8f9f6b577d57dd"; // ← Enganxa aquí el teu Personal Access Token
+  const AIRTABLE_TOKEN = "patfmVbZZOsiZj5Xs.c2d6e999ee063b3a7b79466e531882de6ac5f432b6eaa04d232138ec2bf750d4"; // ← Enganxa aquí el teu Personal Access Token
   const BASE_ID        = "appC9AFAxKuIJgdFH";
   const TABLE_NAME     = "Favors";
 
@@ -367,7 +387,7 @@ function toggleMobileMenu() {
     const grid = document.getElementById('favors-grid');
     grid.innerHTML = "";
 
-    const oberts = records.filter(r => r.fields.Status === "obert");
+    const oberts = records.filter(r => r.fields.Status === "obert" || (esAdmin && r.fields.Status === "pendent"));
     const visibles = filtrActiu ? oberts.filter(r => r.fields.Type === filtrActiu) : oberts;
 
     document.getElementById('missatges-count').textContent = visibles.length;
@@ -391,11 +411,25 @@ function toggleMobileMenu() {
       card.style.background = estil.bg;
 
       card.innerHTML = `
+        ${f.Status === 'pendent' && esAdmin ? `
+        <div class="absolute top-6 right-6 flex gap-2">
+          <button onclick="aprovarMissatge('${record.id}', '${(f.Title||'').replace(/'/g,String.fromCharCode(39))}'  , '${(f.Type||'').replace(/'/g,String.fromCharCode(39))}')"
+            class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-500 hover:text-white transition-all duration-300" title="Aprovar i publicar">
+            <span class="material-symbols-outlined text-[20px]">check_circle</span>
+          </button>
+          <button onclick="comprovarCodi('${record.id}', '${codiEscapat}')"
+            class="w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center hover:bg-error hover:text-white transition-all duration-300" title="Eliminar">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <div class="absolute top-20 left-0 right-0 flex justify-center">
+          <span class="text-[10px] font-black tracking-widest uppercase bg-amber-100 text-amber-700 px-3 py-1 rounded-full">⏳ Pendent d'aprovació</span>
+        </div>` : `
         <button
           onclick="comprovarCodi('${record.id}', '${codiEscapat}')"
           class="absolute top-6 right-6 w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center hover:bg-error hover:text-white transition-all duration-300">
           <span class="material-symbols-outlined text-[20px]">close</span>
-        </button>
+        </button>`}
         <div class="mb-4">
           <span class="text-[11px] font-black tracking-[0.15em] ${estil.badge} px-4 py-1.5 rounded-full uppercase">${f.Type || ""}</span>
         </div>
@@ -550,6 +584,27 @@ function toggleMobileMenu() {
     }
   }
 
+
+  // ============================================================
+  // APROVAR MISSATGE (pendent → obert) — només admin
+  // ============================================================
+  async function aprovarMissatge(recordId, titol, tipus) {
+    try {
+      const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}/${recordId}`, {
+        method: "PATCH",
+        headers: airtableHeaders(),
+        body: JSON.stringify({ fields: { Status: "obert" } })
+      });
+      if (!response.ok) { alert("Error en aprovar el missatge."); return; }
+      const webUrl = "https://remeiprat.github.io/Xarxa-de-Favors/";
+      const msg = "📢 Nou missatge a la Xarxa de Favors!\n\n📌 *" + titol + "* (" + tipus + ")\n\nPodeu veure\'l i contactar aquí:\n" + webUrl;
+      window.open("https://wa.me/34606149649?text=" + encodeURIComponent(msg), "_blank");
+      fetchFavors();
+    } catch (err) {
+      alert("Error de connexió.");
+    }
+  }
+
   // ============================================================
   // Inicialització
   // ============================================================
@@ -557,6 +612,31 @@ function toggleMobileMenu() {
   // ============================================================
   let totsElsRegistres = []; // guardem tots per poder filtrar
   let filtrActiu = null;
+  let esAdmin = false;
+
+  function obrirLoginAdmin() {
+    if (esAdmin) {
+      // Si ja és admin, desconnectar
+      esAdmin = false;
+      fetchFavors();
+      return;
+    }
+    const input = document.getElementById('adminPasswordInput');
+    if (input) input.value = '';
+    document.getElementById('adminLoginModal').classList.remove('hidden');
+    setTimeout(() => { if(input) input.focus(); }, 100);
+  }
+
+  function validarAdmin() {
+    const val = document.getElementById('adminPasswordInput').value.trim();
+    if (val === '9999') {
+      esAdmin = true;
+      document.getElementById('adminLoginModal').classList.add('hidden');
+      fetchFavors();
+    } else {
+      alert('❌ Contrasenya incorrecta.');
+    }
+  }
 
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
