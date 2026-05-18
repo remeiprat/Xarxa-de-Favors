@@ -166,17 +166,32 @@ function toggleMobileMenu() {
 </div>
 </div>
 </section>
+
+<section class="max-w-7xl mx-auto px-8 mb-6">
+  <div class="flex gap-4 border-b border-outline-variant/30 overflow-x-auto no-scrollbar">
+      <button id="tab-actius" class="px-2 py-3 font-black text-primary border-b-2 border-primary whitespace-nowrap" onclick="canviarPestanya('actius')">Actius i Pendents</button>
+      <button id="tab-historic" class="px-2 py-3 font-semibold text-on-surface-variant hover:text-primary transition-colors border-b-2 border-transparent whitespace-nowrap" onclick="canviarPestanya('historic')">Històric (Tancats)</button>
+  </div>
+</section>
+
 <section class="max-w-7xl mx-auto px-8 mb-12">
-<div class="flex flex-wrap gap-3 items-center" id="filter-buttons">
-<button data-tipus="Necessito ajuda"        class="filter-btn inline-flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm text-[#0369a1] bg-[#E0F2FE] hover:shadow-lg hover:shadow-sky-200 transition-all active:scale-95"><span class="material-symbols-outlined text-base" style="font-size:16px">filter_list</span>Necessito ajuda</button>
-<button data-tipus="Ofereixo ajuda"         class="filter-btn inline-flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm text-[#15803d] bg-[#DCFCE7] hover:shadow-lg hover:shadow-emerald-200 transition-all active:scale-95"><span class="material-symbols-outlined text-base" style="font-size:16px">filter_list</span>Ofereixo ajuda</button>
-<button data-tipus="Intercanvi/Donacions"   class="filter-btn inline-flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm text-[#854d0e] bg-[#FEF9C3] hover:shadow-lg hover:shadow-yellow-200 transition-all active:scale-95"><span class="material-symbols-outlined text-base" style="font-size:16px">filter_list</span>Intercanvi/Donacions</button>
-<button data-tipus="Activitats/Socialització" class="filter-btn inline-flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm text-[#7e22ce] bg-[#F3E8FF] hover:shadow-lg hover:shadow-purple-200 transition-all active:scale-95"><span class="material-symbols-outlined text-base" style="font-size:16px">filter_list</span>Activitats/Socialització</button>
-</div>
-<h2 class="text-2xl font-black text-on-surface mt-8 flex items-center gap-3">
-  <span id="missatges-count" class="inline-flex items-center justify-center min-w-[2rem] h-8 px-2.5 rounded-full bg-primary text-white text-sm font-black">0</span>
-  Missatges publicats:
-</h2>
+  <div id="cercador-container" class="hidden mb-6">
+      <div class="relative max-w-md">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+          <input type="text" id="input-cerca" placeholder="Cerca missatges a l'històric..." class="w-full pl-12 pr-4 py-3 rounded-2xl bg-surface-container-highest border-transparent focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all outline-none" oninput="cercarHistoric(this.value)">
+      </div>
+  </div>
+
+  <div class="flex flex-wrap gap-3 items-center" id="filter-buttons">
+  <button data-tipus="Necessito ajuda"        class="filter-btn inline-flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm text-[#0369a1] bg-[#E0F2FE] hover:shadow-lg hover:shadow-sky-200 transition-all active:scale-95"><span class="material-symbols-outlined text-base" style="font-size:16px">filter_list</span>Necessito ajuda</button>
+  <button data-tipus="Ofereixo ajuda"         class="filter-btn inline-flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm text-[#15803d] bg-[#DCFCE7] hover:shadow-lg hover:shadow-emerald-200 transition-all active:scale-95"><span class="material-symbols-outlined text-base" style="font-size:16px">filter_list</span>Ofereixo ajuda</button>
+  <button data-tipus="Intercanvi/Donacions"   class="filter-btn inline-flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm text-[#854d0e] bg-[#FEF9C3] hover:shadow-lg hover:shadow-yellow-200 transition-all active:scale-95"><span class="material-symbols-outlined text-base" style="font-size:16px">filter_list</span>Intercanvi/Donacions</button>
+  <button data-tipus="Activitats/Socialització" class="filter-btn inline-flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm text-[#7e22ce] bg-[#F3E8FF] hover:shadow-lg hover:shadow-purple-200 transition-all active:scale-95"><span class="material-symbols-outlined text-base" style="font-size:16px">filter_list</span>Activitats/Socialització</button>
+  </div>
+  <h2 class="text-2xl font-black text-on-surface mt-8 flex items-center gap-3">
+    <span id="missatges-count" class="inline-flex items-center justify-center min-w-[2rem] h-8 px-2.5 rounded-full bg-primary text-white text-sm font-black">0</span>
+    <span id="missatges-titol">Missatges actius:</span>
+  </h2>
 </section>
 <section class="max-w-7xl mx-auto px-8">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="favors-grid">
@@ -313,6 +328,8 @@ function toggleMobileMenu() {
   // ============================================================
   let totsElsRegistres = []; // guardem tots per poder filtrar
   let filtrActiu = null;
+  let pestanyaActiva = 'actius';
+  let termeCerca = '';
   
   // Verificació d'Administradora a través de la URL o els 3 clics
   const urlParams = new URLSearchParams(window.location.search);
@@ -331,6 +348,34 @@ function toggleMobileMenu() {
     } else {
       adminTimeout = setTimeout(() => { adminClicks = 0; }, 800); // 800ms de marge per fer els 3 clics
     }
+  }
+
+  function canviarPestanya(pestanya) {
+    pestanyaActiva = pestanya;
+    const tabActius = document.getElementById('tab-actius');
+    const tabHistoric = document.getElementById('tab-historic');
+    const cercaContainer = document.getElementById('cercador-container');
+    const missatgesTitol = document.getElementById('missatges-titol');
+
+    if (pestanya === 'actius') {
+        tabActius.className = "px-2 py-3 font-black text-primary border-b-2 border-primary whitespace-nowrap";
+        tabHistoric.className = "px-2 py-3 font-semibold text-on-surface-variant hover:text-primary transition-colors border-b-2 border-transparent whitespace-nowrap";
+        cercaContainer.classList.add('hidden');
+        missatgesTitol.textContent = "Missatges actius:";
+        document.getElementById('input-cerca').value = "";
+        termeCerca = "";
+    } else {
+        tabHistoric.className = "px-2 py-3 font-black text-primary border-b-2 border-primary whitespace-nowrap";
+        tabActius.className = "px-2 py-3 font-semibold text-on-surface-variant hover:text-primary transition-colors border-b-2 border-transparent whitespace-nowrap";
+        cercaContainer.classList.remove('hidden');
+        missatgesTitol.textContent = "Missatges a l'històric:";
+    }
+    renderCards(totsElsRegistres);
+  }
+
+  function cercarHistoric(val) {
+      termeCerca = val;
+      renderCards(totsElsRegistres);
   }
 
   // Helper: capçaleres reutilitzables
@@ -382,17 +427,61 @@ function toggleMobileMenu() {
     const grid = document.getElementById('favors-grid');
     grid.innerHTML = "";
 
-    // Filtrem què pot veure l'usuari actual: oberts per a tothom, oberts+pendents per a l'admin
-    const targetStatus = isAdmin ? ["obert", "pendent"] : ["obert"];
-    const missatgesFiltresPerEstat = records.filter(r => targetStatus.includes(r.fields.Status));
-    const visibles = filtrActiu ? missatgesFiltresPerEstat.filter(r => r.fields.Type === filtrActiu) : missatgesFiltresPerEstat;
+    let visibles = [];
+
+    if (pestanyaActiva === 'actius') {
+        const targetStatus = isAdmin ? ["obert", "pendent"] : ["obert"];
+        visibles = records.filter(r => targetStatus.includes(r.fields.Status));
+        if (filtrActiu) visibles = visibles.filter(r => r.fields.Type === filtrActiu);
+    } else {
+        // Històric
+        visibles = records.filter(r => {
+            if (r.fields.Status !== 'tancat') return false;
+            
+            const pubDate = new Date(r.createdTime);
+            // El camp ha de dir-se exactament "DataTancament" a Airtable.
+            const closeDateStr = r.fields.DataTancament; 
+            
+            if (!closeDateStr) return false; 
+
+            const closeDate = new Date(closeDateStr);
+            const diffDies = (closeDate - pubDate) / (1000 * 60 * 60 * 24);
+
+            // Tancats abans de 30 dies de ser publicats
+            if (diffDies > 30) return false;
+
+            // Tancats abans de caducar
+            const expiryStr = r.fields.ExpiryDate;
+            if (expiryStr) {
+                const expDate = new Date(expiryStr);
+                // Normalitzem a mitjanit per comparar només dates sense les hores
+                const cDateNormalitzada = new Date(closeDate);
+                cDateNormalitzada.setHours(0,0,0,0);
+                expDate.setHours(0,0,0,0);
+                if (cDateNormalitzada > expDate) return false;
+            }
+
+            if (filtrActiu && r.fields.Type !== filtrActiu) return false;
+
+            if (termeCerca) {
+                const query = termeCerca.toLowerCase();
+                // Incloem el comentari en la cerca
+                const str = `${r.fields.Title || ''} ${r.fields.Comentari || ''} ${r.fields.Name || ''} ${r.fields.Locality || ''} ${r.fields.OtherLocality || ''}`.toLowerCase();
+                if (!str.includes(query)) return false;
+            }
+
+            return true;
+        });
+    }
 
     document.getElementById('missatges-count').textContent = visibles.length;
 
     if (visibles.length === 0) {
-      grid.innerHTML = `<p class="col-span-3 text-center text-on-surface-variant font-semibold py-16">No hi ha missatges ${filtrActiu ? 'de tipus "' + filtrActiu + '"' : 'oberts'} ara mateix.</p>`;
+      grid.innerHTML = `<p class="col-span-3 text-center text-on-surface-variant font-semibold py-16">No hi ha missatges en aquesta pestanya ara mateix.</p>`;
       return;
     }
+
+    const isHistoric = (pestanyaActiva === 'historic');
 
     visibles.forEach(record => {
       const f = record.fields;
@@ -417,27 +506,60 @@ function toggleMobileMenu() {
         </button>
       ` : "";
 
-      // Generem una etiqueta cridanera si el missatge està pendent
       const badgeEstat = (f.Status === 'pendent') 
           ? `<span class="text-[10px] font-black tracking-[0.15em] bg-amber-200 text-amber-800 px-3 py-1.5 rounded-full uppercase ml-1 animate-pulse border border-amber-300">Pendent</span>`
           : "";
 
-      card.innerHTML = `
+      // Si estem a l'històric, amaguem les accions d'eliminar/aprovar.
+      // Si som admins, la creu fa rebutjarMissatgeAdmin
+      const accionsTopRight = (!isHistoric) ? `
         <div class="absolute top-6 right-6 flex gap-2 z-10">
           ${btnAprovar}
           <button
-            onclick="comprovarCodi('${record.id}', '${codiEscapat}')"
-            class="w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center hover:bg-error hover:text-white transition-all duration-300 shadow-sm" title="Esborrar / Tancar">
+            onclick="${isAdmin ? `rebutjarMissatgeAdmin('${record.id}')` : `comprovarCodi('${record.id}', '${codiEscapat}')`}"
+            class="w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center hover:bg-error hover:text-white transition-all duration-300 shadow-sm" title="${isAdmin ? 'Marcar com a no apte' : 'Esborrar / Tancar'}">
             <span class="material-symbols-outlined text-[20px]">close</span>
           </button>
-        </div>
+        </div>` : '';
+
+      // Mostrem el botó verd de WhatsApp a les dues pestanyes
+      const contactArea = `
+          <a href="https://wa.me/${f.Phone || ""}" target="_blank"
+             class="w-full py-4 rounded-2xl bg-[#25D366] text-white font-black flex items-center justify-center gap-3 hover:brightness-95 hover:shadow-lg hover:shadow-emerald-500/20 transition-all">
+            <span class="material-symbols-outlined">chat</span> Contactar
+          </a>`;
+
+      // Determinar si mostrem la descripció original o el comentari de tancament
+      const textMostrar = isHistoric ? (f.Comentari || "L'usuari no ha deixat cap comentari addicional en tancar el missatge.") : (f.Description || "");
+
+      // Si estem a l'històric mostrem la data de creació en comptes de quan caduca per donar més context
+      let dataText = "";
+      if (isHistoric) {
+          const dataCreada = new Date(record.createdTime).toLocaleDateString('ca-ES');
+          dataText = `
+            <div>
+              <p class="text-[10px] ${estil.label} uppercase font-black tracking-widest">Publicat</p>
+              <p class="text-sm font-bold">${dataCreada}</p>
+            </div>
+          `;
+      } else {
+          dataText = `
+            <div>
+              <p class="text-[10px] ${estil.label} uppercase font-black tracking-widest">Caduca</p>
+              <p class="text-sm font-bold">${f.ExpiryDate || "—"}</p>
+            </div>
+          `;
+      }
+
+      card.innerHTML = `
+        ${accionsTopRight}
         <div class="mb-4 flex flex-wrap gap-2 items-center pr-24">
           <span class="text-[11px] font-black tracking-[0.15em] ${estil.badge} px-4 py-1.5 rounded-full uppercase shadow-sm">${f.Type || ""}</span>
           ${badgeEstat}
         </div>
         <h3 class="text-2xl font-black mb-3 pr-4 text-on-surface leading-tight">${f.Title || "(Sense títol)"}</h3>
         <div class="mb-6">
-          <p id="${cardId}" class="text-on-surface-variant leading-relaxed font-medium" style="display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">${f.Description || ""}</p>
+          <p id="${cardId}" class="text-on-surface-variant leading-relaxed font-medium" style="display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">${textMostrar}</p>
           <button onclick="toggleDesc('${cardId}', this)" class="mt-2 text-xs font-black flex items-center gap-1 opacity-60 hover:opacity-100 transition-opacity" style="color:inherit;">
             <span class="material-symbols-outlined text-sm" style="vertical-align:middle;">expand_more</span> Llegir més
           </button>
@@ -453,15 +575,9 @@ function toggleMobileMenu() {
             </div>
           </div>
           <div class="grid grid-cols-2 gap-4 py-4 border-t ${estil.border}">
-            <div>
-              <p class="text-[10px] ${estil.label} uppercase font-black tracking-widest">Caduca</p>
-              <p class="text-sm font-bold">${f.ExpiryDate || "—"}</p>
-            </div>
+            ${dataText}
           </div>
-          <a href="https://wa.me/${f.Phone || ""}" target="_blank"
-             class="w-full py-4 rounded-2xl bg-[#25D366] text-white font-black flex items-center justify-center gap-3 hover:brightness-95 hover:shadow-lg hover:shadow-emerald-500/20 transition-all">
-            <span class="material-symbols-outlined">chat</span> Contactar
-          </a>
+          ${contactArea}
         </div>
       `;
       grid.appendChild(card);
@@ -562,18 +678,27 @@ function toggleMobileMenu() {
   });
 
   // ============================================================
-  // 3. TANCAR UN FAVOR (creu vermella)
+  // 3. TANCAR UN FAVOR (creu vermella USUARI) I DEMANAR COMENTARI
   // ============================================================
   async function comprovarCodi(recordId, codiCorrecte) {
     const inputCodi = prompt("Introdueix el teu codi secret de 4 xifres per tancar/esborrar aquest missatge:");
     if (inputCodi === null) return; // l'usuari ha cancel·lat
 
     if (parseInt(inputCodi, 10) === parseInt(codiCorrecte, 10) || inputCodi === "9999") {
+      
+      // Demanem el comentari sobre l'experiència just abans de tancar
+      const inputComentari = prompt("Com ha anat l'experiència? Deixa un breu comentari (es mostrarà a l'històric de forma pública):") || "";
+      
       try {
         const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}/${recordId}`, {
           method: "PATCH",
           headers: airtableHeaders(),
-          body: JSON.stringify({ fields: { Status: "tancat" } })
+          body: JSON.stringify({ 
+            fields: { 
+                Status: "tancat",
+                Comentari: inputComentari // Guardem el comentari a la nova columna d'Airtable
+            } 
+          })
         });
         if (!response.ok) {
           const err = await response.json();
@@ -581,7 +706,7 @@ function toggleMobileMenu() {
           alert("Error en esborrar el missatge. Revisa la consola.");
           return;
         }
-        alert("✅ Missatge esborrat correctament.");
+        alert("✅ Missatge tancat correctament.");
         fetchFavors();
       } catch (error) {
         console.error("❌ Error de xarxa tancant favor:", error);
@@ -612,6 +737,30 @@ function toggleMobileMenu() {
       fetchFavors();
     } catch (error) {
       console.error("❌ Error de xarxa aprovant missatge:", error);
+      alert("Error de connexió.");
+    }
+  }
+
+  // ============================================================
+  // 5. REBUTJAR UN FAVOR (Només per a l'administradora)
+  // ============================================================
+  async function rebutjarMissatgeAdmin(recordId) {
+    if (!confirm("Com a administradora, vols marcar aquest missatge com a 'no apte'? Això l'ocultarà del taulell i no anirà a l'històric de forma estàndard.")) return;
+    try {
+      const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}/${recordId}`, {
+        method: "PATCH",
+        headers: airtableHeaders(),
+        body: JSON.stringify({ fields: { Status: "no apte" } })
+      });
+      if (!response.ok) {
+        const err = await response.json();
+        console.error("❌ Error rebutjant missatge:", err);
+        alert("Error en rebutjar el missatge. Revisa la consola.");
+        return;
+      }
+      fetchFavors();
+    } catch (error) {
+      console.error("❌ Error de xarxa rebutjant missatge:", error);
       alert("Error de connexió.");
     }
   }
