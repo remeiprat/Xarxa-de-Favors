@@ -308,6 +308,8 @@ function toggleMobileMenu() {
 </script>
 
 
+
+
 <script>
   // ============================================================
   // CONFIGURACIÓ AIRTABLE — omple el token aquí
@@ -483,7 +485,7 @@ function toggleMobileMenu() {
         OtherLocality: altraLoc,
         ExpiryDate:    venciment,
         SecretCode:    parseInt(codiRaw, 10),
-        Status:        "obert"
+        Status:        "pendent"
       }
     };
 
@@ -508,7 +510,7 @@ function toggleMobileMenu() {
       e.target.reset();
       document.getElementById('publishModal').classList.add('hidden');
       // Obrir WhatsApp al número de l'administradora amb el missatge ja redactat per reenviar al grup
-      const msgAdmin = "⏳ Nova entrada pendent de revisió!\n\n📌 *" + titol + "* (" + tipus + ")\n\nRevisa-la i aprova-la des de la web.";
+      const msgAdmin = "⏳ Nova entrada pendent de revisió a la Xarxa de Favors!\n\n📌 *" + titol + "* (" + tipus + ")\n\nRevisa-la a Airtable i canvia l'Status a \"obert\" per publicar-la.";
       window.open("https://wa.me/34606149649?text=" + encodeURIComponent(msgAdmin), "_blank");
       fetchFavors();
     } catch (error) {
