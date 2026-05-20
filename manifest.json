@@ -1,0 +1,21 @@
+{
+  "name": "Xarxa de Favors del Barri",
+  "short_name": "Xarxa Favors",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#4F46E5",
+  "theme_color": "#4F46E5",
+  "description": "Plataforma comunitaria para ofrecer y pedir ayuda entre vecinos.",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1370/1370014.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1370/1370014.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
