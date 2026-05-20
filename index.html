@@ -105,6 +105,8 @@
         .line-clamp-3 + .llegir-mes-btn,
         .desc-truncated + .llegir-mes-btn { display: inline-flex; }
     </style>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#375c91">
 </head>
 <body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
 <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-surface-container/50">
@@ -118,9 +120,9 @@
 <div class="hidden md:flex gap-8 items-center">
 <button onclick="document.getElementById('normesModal').classList.remove('hidden')" class="text-on-surface-variant hover:text-primary font-semibold transition-colors duration-300 bg-transparent border-none cursor-pointer">Normes d'ús</button>
 <button onclick="document.getElementById('guiaModal').classList.remove('hidden')" class="text-on-surface-variant hover:text-primary font-semibold transition-colors duration-300 bg-transparent border-none cursor-pointer">Guia d'ús</button>
-<a class="text-on-surface-variant hover:text-primary font-semibold transition-colors duration-300 flex items-center gap-1.5" href="https://chat.whatsapp.com/Hyzwt9VMKILKqZYkbXpbqH" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#25D366" class="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Info Xarxa de Favors</a>
-<a class="text-on-surface-variant hover:text-primary font-semibold transition-colors duration-300 flex items-center gap-1.5" href="https://chat.whatsapp.com/JaWdZpZP2gc3840uzsmMaj" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#25D366" class="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Cafè de la Xarxa</a>
+<a class="text-on-surface-variant hover:text-primary font-semibold transition-colors duration-300 flex items-center gap-1.5" href="https://chat.whatsapp.com/GekxmhnIVbIJYywhRTPf0N" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#25D366" class="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Comunitat de la Xarxa de Favors</a>
 <a href="https://wa.me/34606149649" target="_blank" onclick="toggleMobileMenu()" class="flex items-center gap-2 py-3 px-4 rounded-2xl text-on-surface-variant hover:bg-surface-container hover:text-primary font-semibold transition-colors duration-200"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#25D366" class="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Administradora</a>
+</div>
 </div>
 </nav>
 <script>
@@ -410,6 +412,7 @@ function toggleMobileMenu() {
     return name.trim().split(/\s+/).map(w => w[0].toUpperCase()).slice(0, 2).join("");
   }
 
+  // Enllacem correctament la funció de renderitzat
   function renderCards(records) {
     const grid = document.getElementById('favors-grid');
     grid.innerHTML = "";
@@ -426,7 +429,6 @@ function toggleMobileMenu() {
             if (r.fields.Status !== 'tancat') return false;
             
             const pubDate = new Date(r.createdTime);
-            // El camp ha de dir-se exactament "DataTancament" a Airtable.
             const closeDateStr = r.fields.DataTancament; 
             
             if (!closeDateStr) return false; 
@@ -434,14 +436,11 @@ function toggleMobileMenu() {
             const closeDate = new Date(closeDateStr);
             const diffDies = (closeDate - pubDate) / (1000 * 60 * 60 * 24);
 
-            // Tancats abans de 30 dies de ser publicats
             if (diffDies > 30) return false;
 
-            // Tancats abans de caducar
             const expiryStr = r.fields.ExpiryDate;
             if (expiryStr) {
                 const expDate = new Date(expiryStr);
-                // Normalitzem a mitjanit per comparar només dates sense les hores
                 const cDateNormalitzada = new Date(closeDate);
                 cDateNormalitzada.setHours(0,0,0,0);
                 expDate.setHours(0,0,0,0);
@@ -452,7 +451,6 @@ function toggleMobileMenu() {
 
             if (termeCerca) {
                 const query = termeCerca.toLowerCase();
-                // Incloem el comentari en la cerca
                 const str = `${r.fields.Title || ''} ${r.fields.Comentari || ''} ${r.fields.Name || ''} ${r.fields.Locality || ''} ${r.fields.OtherLocality || ''}`.toLowerCase();
                 if (!str.includes(query)) return false;
             }
@@ -476,7 +474,6 @@ function toggleMobileMenu() {
       const localitat = f.Locality === "Altres localitats" ? (f.OtherLocality || "Altres") : (f.Locality || "");
       const initials  = getInitials(f.Name);
       
-      // Guardem els strings escapats correctament
       const codiEscapat = String(f.SecretCode || "").replace(/'/g, "\\'");
       const titolEscapat = String(f.Title || "(Sense títol)").replace(/'/g, "\\'");
       const tipusEscapat = String(f.Type || "").replace(/'/g, "\\'");
@@ -486,7 +483,6 @@ function toggleMobileMenu() {
       card.className = "p-8 rounded-[2rem] relative transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl flex flex-col h-full";
       card.style.background = estil.bg;
 
-      // Generem el botó d'aprovar si som admins i l'estat és pendent
       const btnAprovar = (isAdmin && f.Status === 'pendent') ? `
         <button
           onclick="aprovarMissatge('${record.id}', '${titolEscapat}', '${tipusEscapat}')"
@@ -500,7 +496,6 @@ function toggleMobileMenu() {
           ? `<span class="text-[10px] font-black tracking-[0.15em] bg-amber-200 text-amber-800 px-3 py-1.5 rounded-full uppercase ml-1 animate-pulse border border-amber-300">Pendent</span>`
           : "";
 
-      // Si estem a l'històric, amaguem les accions d'eliminar/aprovar.
       const accionsTopRight = (!isHistoric) ? `
         <div class="absolute top-6 right-6 flex gap-2 z-10">
           ${btnAprovar}
@@ -511,17 +506,14 @@ function toggleMobileMenu() {
           </button>
         </div>` : '';
 
-      // Mostrem el botó verd de WhatsApp a les dues pestanyes
       const contactArea = `
           <a href="https://wa.me/${f.Phone || ""}" target="_blank"
              class="w-full py-4 rounded-2xl bg-[#25D366] text-white font-black flex items-center justify-center gap-3 hover:brightness-95 hover:shadow-lg hover:shadow-emerald-500/20 transition-all">
             <span class="material-symbols-outlined">chat</span> Contactar
           </a>`;
 
-      // Determinar si mostrem la descripció original o el comentari de tancament
       const textMostrar = isHistoric ? (f.Comentari || "L'usuari no ha deixat cap comentari addicional en tancar el missatge.") : (f.Description || "");
 
-      // Si estem a l'històric mostrem la data de creació en comptes de quan caduca per donar més context
       let dataText = "";
       if (isHistoric) {
           const dataCreada = new Date(record.createdTime).toLocaleDateString('ca-ES');
@@ -572,7 +564,6 @@ function toggleMobileMenu() {
       grid.appendChild(card);
     });
 
-    // Amagar "Llegir més" en les targetes on el text ja cap sencer
     requestAnimationFrame(() => {
       visibles.forEach(record => {
         const pEl = document.getElementById(`desc-${record.id}`);
@@ -595,7 +586,6 @@ function toggleMobileMenu() {
       return;
     }
 
-    // Recollim i validem els camps
     const titol      = document.getElementById('titol').value.trim();
     const descripcio = document.getElementById('descripcio').value.trim();
     const nom        = document.getElementById('nom').value.trim();
@@ -630,8 +620,6 @@ function toggleMobileMenu() {
       }
     };
 
-    console.log("📤 Enviant a Airtable:", payload);
-
     try {
       const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`, {
         method: "POST",
@@ -642,40 +630,32 @@ function toggleMobileMenu() {
       const result = await response.json();
 
       if (!response.ok) {
-        console.error("❌ Error Airtable (POST):", result);
-        alert(`Error en publicar: ${result?.error?.message || "Revisa la consola per més detalls."}`);
+        alert(`Error en publicar: ${result?.error?.message || "Revisa la consola."}`);
         return;
       }
-
-      console.log("✅ Registre creat:", result);
       
-      // Reiniciar formulari i tancar correctament les seccions extres desplegades
       e.target.reset();
       document.getElementById('extraLocContainer').classList.add('hidden');
       document.getElementById('whatsapp-feedback').textContent = '';
       document.getElementById('whatsapp').classList.remove('ring-2', 'ring-green-400', 'ring-red-400');
       document.getElementById('publishModal').classList.add('hidden');
 
-      // Obrir WhatsApp al número de l'administradora amb el missatge ja redactat per reenviar al grup
       const msgAdmin = "⏳ Nova entrada pendent de revisió a la Xarxa de Favors!\n\n📌 *" + titol + "* (" + tipus + ")\n\nRevisa-la i canvia l'estat per publicar-la.";
       mostrarToastAdmin("https://wa.me/34606149649?text=" + encodeURIComponent(msgAdmin));
       fetchFavors();
     } catch (error) {
-      console.error("❌ Error de xarxa en publicar:", error);
-      alert("Error de connexió. Comprova la consola.");
+      console.error(error);
     }
   });
 
   // ============================================================
-  // 3. TANCAR UN FAVOR (creu vermella USUARI) I DEMANAR COMENTARI
+  // 3. TANCAR UN FAVOR
   // ============================================================
   async function comprovarCodi(recordId, codiCorrecte) {
     const inputCodi = prompt("Introdueix el teu codi secret de 4 xifres per tancar/esborrar aquest missatge:");
-    if (inputCodi === null) return; // l'usuari ha cancel·lat
+    if (inputCodi === null) return;
 
     if (parseInt(inputCodi, 10) === parseInt(codiCorrecte, 10) || inputCodi === "9999") {
-      
-      // Demanem el comentari sobre l'experiència just abans de tancar
       const inputComentari = prompt("Com ha anat l'experiència? Deixa un breu comentari (es mostrarà a l'històric de forma pública):") || "";
       
       try {
@@ -685,21 +665,18 @@ function toggleMobileMenu() {
           body: JSON.stringify({ 
             fields: { 
                 Status: "tancat",
-                Comentari: inputComentari // Guardem el comentari a la nova columna d'Airtable
+                Comentari: inputComentari
             } 
           })
         });
         if (!response.ok) {
-          const err = await response.json();
-          console.error("❌ Error tancant favor:", err);
-          alert("Error en esborrar el missatge. Revisa la consola.");
+          alert("Error en tancar el missatge.");
           return;
         }
         alert("✅ Missatge tancat correctament.");
         fetchFavors();
       } catch (error) {
-        console.error("❌ Error de xarxa tancant favor:", error);
-        alert("Error de connexió.");
+        console.error(error);
       }
     } else {
       alert("❌ Codi incorrecte.");
@@ -707,10 +684,10 @@ function toggleMobileMenu() {
   }
 
   // ============================================================
-  // 4. APROVAR UN FAVOR (Només per a l'administradora)
+  // 4. APROVAR UN FAVOR
   // ============================================================
   async function aprovarMissatge(recordId, titol, tipus) {
-    if (!confirm("Vols aprovar i publicar aquest missatge perquè tothom el pugui veure?")) return;
+    if (!confirm("Vols aprovar i publicar aquest missatge?")) return;
     try {
       const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}/${recordId}`, {
         method: "PATCH",
@@ -718,47 +695,34 @@ function toggleMobileMenu() {
         body: JSON.stringify({ fields: { Status: "obert" } })
       });
       if (!response.ok) {
-        const err = await response.json();
-        console.error("❌ Error aprovant missatge:", err);
-        alert("Error en aprovar el missatge. Revisa la consola.");
+        alert("Error en aprovar.");
         return;
       }
       
-      // Generem el missatge perquè l'admin el comparteixi directament a la comunitat
       const urlWeb = "https://remeiprat.github.io/Xarxa-de-Favors/";
-      const msgAdmin = `📢 *Nou missatge a la Xarxa de Favors!*\n\n📌 *${titol}* (${tipus})\n\n🔗 Entra al taulell web per veure tots els detalls i contactar amb la persona:\n🌐 ${urlWeb}`;
-      
-      // Canviem l'enllaç perquè no vagi a un número concret, sinó que obri el selector de contactes/grups
+      const msgAdmin = `📢 *Nou missatge a la Xarxa de Favors!*\n\n📌 *${titol}* (${tipus})\n\n🔗 Entra al taulell web per veure tots els detalls:\n🌐 ${urlWeb}`;
       mostrarToastAdmin("https://api.whatsapp.com/send?text=" + encodeURIComponent(msgAdmin), "Aprovat! Toca per compartir a un grup.");
       
       fetchFavors();
     } catch (error) {
-      console.error("❌ Error de xarxa aprovant missatge:", error);
-      alert("Error de connexió.");
+      console.error(error);
     }
   }
 
   // ============================================================
-  // 5. REBUTJAR UN FAVOR (Només per a l'administradora)
+  // 5. REBUTJAR UN FAVOR
   // ============================================================
   async function rebutjarMissatgeAdmin(recordId) {
-    if (!confirm("Com a administradora, vols marcar aquest missatge com a 'no apte'? Això l'ocultarà del taulell i no anirà a l'històric de forma estàndard.")) return;
+    if (!confirm("Vols marcar aquest missatge com a 'no apte'?")) return;
     try {
       const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}/${recordId}`, {
         method: "PATCH",
         headers: airtableHeaders(),
         body: JSON.stringify({ fields: { Status: "no apte" } })
       });
-      if (!response.ok) {
-        const err = await response.json();
-        console.error("❌ Error rebutjant missatge:", err);
-        alert("Error en rebutjar el missatge. Revisa la consola.");
-        return;
-      }
       fetchFavors();
     } catch (error) {
-      console.error("❌ Error de xarxa rebutjant missatge:", error);
-      alert("Error de connexió.");
+      console.error(error);
     }
   }
 
@@ -766,12 +730,9 @@ function toggleMobileMenu() {
     const toast = document.getElementById('adminToast');
     const btn = document.getElementById('adminToastBtn');
     const txtEl = document.getElementById('adminToastText');
-    
     if (txtEl) txtEl.textContent = missatgeToast;
     btn.href = url;
-    
     toast.classList.remove('hide');
-    // Auto-tancar després de 15 segons
     setTimeout(tancarToast, 15000);
   }
   
@@ -779,18 +740,15 @@ function toggleMobileMenu() {
     document.getElementById('adminToast').classList.add('hide');
   }
 
-  // Crida d'inici per mostrar les dades
   fetchFavors();
 
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const tipus = btn.dataset.tipus;
       if (filtrActiu === tipus) {
-        // Segon clic: desactivar filtre → mostrar tots
         filtrActiu = null;
         btn.classList.remove('actiu');
       } else {
-        // Activar aquest filtre
         filtrActiu = tipus;
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('actiu'));
         btn.classList.add('actiu');
@@ -828,72 +786,50 @@ function toggleMobileMenu() {
       </button>
     </div>
     <div class="overflow-y-auto px-8 py-6 text-sm text-on-surface-variant leading-relaxed space-y-5 custom-scroll">
-
       <p>Benvinguts a la guia pràctica de la nostra plataforma. Aquest document us ajudarà a navegar pel taulell d'anuncis i a publicar les vostres peticions o ofertes de manera correcta.</p>
-
       <div>
         <h3 class="font-black text-on-surface mb-2">1. Com consultar el Taulell d'Anuncis</h3>
-        <p class="mb-2">Quan entreu a la web, trobareu tots els missatges actius de la comunitat.</p>
         <ul class="space-y-1 list-disc list-inside">
-          <li><strong>Filtres:</strong> A la part superior, podeu filtrar els missatges per categories (Necessito ajuda, Ofereixo ajuda, Intercanvi/Donacions, Activitats/Socialització).</li>
-          <li><strong>Comptador:</strong> Veureu un número que indica quants anuncis hi ha publicats segons el filtre que hagueu triat.</li>
-          <li><strong>Llegir detalls:</strong> Si un anunci té un text llarg, veureu el botó "Llegir més". Cliqueu-hi per desplegar tota la informació.</li>
+          <li><strong>Filtres:</strong> A la part superior, podeu filtrar els missatges per categories.</li>
+          <li><strong>Comptador:</strong> Veureu un número que indica quants anuncis hi ha publicats.</li>
+          <li><strong>Llegir detalls:</strong> Cliqueu "Llegir més" per desplegar tota la informació.</li>
         </ul>
       </div>
-
       <div>
         <h3 class="font-black text-on-surface mb-2">2. Com connectar via WhatsApp</h3>
-        <p>Has vist algun missatge que t'interessa? Clica sobre "Contactar" del missatge i podràs obrir directament una conversa de WhatsApp amb aquella persona.</p>
+        <p>Clica sobre "Contactar" del missatge i podràs obrir una conversa privada de WhatsApp.</p>
       </div>
-
       <div>
         <h3 class="font-black text-on-surface mb-2">3. Com publicar un anunci</h3>
-        <p class="mb-2">Per posar un anunci nou, heu d'omplir el formulari de publicació:</p>
         <ol class="space-y-1 list-decimal list-inside">
-          <li><strong>Triar la Categoria:</strong> Seleccioneu el tipus de missatge (ajuda, oferta, donació o activitat).</li>
-          <li><strong>Títol o Resum:</strong> Escriviu una frase curta i clara (Exemple: "Necessito ajuda per moure un sofà").</li>
-          <li><strong>Descripció detallada:</strong> Expliqueu amb més calma què necessiteu o què oferiu.</li>
-          <li><strong>Telèfon de contacte:</strong> Escriviu el vostre telèfon amb el format 34600112233. Sense espais ni caràcters especials.</li>
-          <li><strong>Codi de Seguretat (Molt important):</strong> Inventeu-vos un codi de 4 números i anoteu-lo. El necessitareu per esborrar l'anunci.</li>
+          <li><strong>Triar la Categoria:</strong> Seleccioneu el tipus de missatge.</li>
+          <li><strong>Títol o Resum:</strong> Escriviu una frase curta i clara.</li>
+          <li><strong>Descripció detallada:</strong> Expliqueu què necessiteu o oferiu.</li>
+          <li><strong>Telèfon de contacte:</strong> Escriviu el vostre telèfon en format 34600112233.</li>
+          <li><strong>Codi de Seguretat:</strong> Inventeu-vos un codi de 4 números per poder esborrar-lo.</li>
         </ol>
       </div>
-
       <div>
         <h3 class="font-black text-on-surface mb-2">4. Com avisar al grup de WhatsApp</h3>
-        <p class="mb-2">Un cop hàgiu publicat l'anunci, veureu un botó verd per informar la comunitat.</p>
-        <ul class="space-y-1 list-disc list-inside">
-          <li>Si hi cliqueu, s'obrirà el vostre WhatsApp amb un missatge preparat per enviar al grup.</li>
-          <li>D'aquesta manera, les persones de la xarxa rebran un avís que hi ha una novetat al taulell.</li>
-        </ul>
+        <p>Un cop publicat, veureu un botó verd per obrir el missatge compartit al grup.</p>
       </div>
-
       <div>
         <h3 class="font-black text-on-surface mb-2">5. Com esborrar un anunci</h3>
-        <p class="mb-2">Per mantenir la xarxa útil, és obligatori esborrar els anuncis que ja no siguin necessaris:</p>
         <ol class="space-y-1 list-decimal list-inside">
-          <li>Busqueu el vostre anunci al taulell.</li>
-          <li>Cliqueu sobre la creueta vermella (❌) a la cantonada del missatge.</li>
-          <li>El sistema us demanarà el codi de 4 números que vau introduir en publicar-lo.</li>
-          <li>Un cop posat el codi, el missatge desapareixerà automàticament.</li>
+          <li>Cliqueu sobre la creueta vermella (❌) de la targeta.</li>
+          <li>Introduïu el vostre codi secret de 4 números.</li>
         </ol>
       </div>
-
       <div class="bg-surface-variant rounded-2xl p-5">
         <h3 class="font-black text-on-surface mb-2">💡 Consells de Seguretat i Privacitat</h3>
         <ul class="space-y-1 list-disc list-inside">
-          <li><strong>Dades personals:</strong> Poseu només la informació de contacte necessària, ja que la web és visible per a tots els membres.</li>
-          <li><strong>Gestió privada:</strong> Un cop algú us contacti, gestioneu adreces o horaris per xat privat.</li>
-          <li><strong>Suport:</strong> Si teniu qualsevol dificultat tècnica o no recordeu el codi, poseu-vos en contacte amb l'administradora.</li>
+          <li>Poseu només la informació de contacte necessària.</li>
+          <li>Gestioneu adreces o horaris per xat privat.</li>
         </ul>
       </div>
-
-      <p class="text-center font-bold text-on-surface pt-2">Gràcies per fer un bon ús d'aquesta eina i contribuir a fer créixer la Xarxa de Favors! 🤝✨</p>
-
     </div>
     <div class="px-8 py-5 border-t border-outline-variant">
-      <button onclick="document.getElementById('guiaModal').classList.add('hidden')" class="w-full py-3 rounded-2xl bg-primary text-white font-black hover:brightness-95 transition-all">
-        Entesos
-      </button>
+      <button onclick="document.getElementById('guiaModal').classList.add('hidden')" class="w-full py-3 rounded-2xl bg-primary text-white font-black hover:brightness-95 transition-all">Entesos</button>
     </div>
   </div>
 </div>
@@ -907,59 +843,24 @@ function toggleMobileMenu() {
       </button>
     </div>
     <div class="overflow-y-auto px-8 py-6 text-sm text-on-surface-variant leading-relaxed space-y-5 custom-scroll">
-      <p>La Xarxa de Favors és una plataforma comunitària sense ànim de lucre destinada a fomentar l'ajuda mútua, el suport veïnal i l'intercanvi altruista. L'ús de la web implica l'acceptació de les següents normes:</p>
+      <p>La Xarxa de Favors és una plataforma comunitària altruista. L'ús de la web implica l'acceptació de les següents normes:</p>
       <div>
         <h3 class="font-black text-on-surface mb-2">1. Naturalesa del Projecte</h3>
         <ul class="space-y-1 list-disc list-inside">
-          <li><strong>Absència de lucre:</strong> Queda totalment prohibida qualsevol transacció econòmica. La Xarxa no és un lloc de compravenda ni de contractació de serveis.</li>
-          <li><strong>Caràcter voluntari:</strong> Totes les accions es realitzen de forma lliure i voluntària. Cap usuari està obligat a acceptar una petició si no ho desitja.</li>
+          <li><strong>Absència de lucre:</strong> Queda totalment prohibida qualsevol transacció econòmica.</li>
+          <li><strong>Caràcter voluntari:</strong> Totes les accions es realitzen de forma altruista.</li>
         </ul>
       </div>
       <div>
-        <h3 class="font-black text-on-surface mb-2">2. Normes de Publicació de missatges al taulell de la Web</h3>
+        <h3 class="font-black text-on-surface mb-2">2. Normes de Publicació</h3>
         <ul class="space-y-1 list-disc list-inside">
-          <li><strong>Veracitat:</strong> Els usuaris es comprometen a publicar informació veraç i actualitzada.</li>
-          <li><strong>Manteniment:</strong> És responsabilitat de l'usuari retirar l'anunci (mitjançant el codi de seguretat de 4 xifres) un cop el favor s'hagi realitzat o l'objecte hagi estat lliurat.</li>
-          <li><strong>Contingut prohibit:</strong> No s'acceptaran anuncis que incloguin publicitat comercial o oferta de serveis professionals remunerats, propaganda política, religiosa o missatges discriminatoris, ni contingut ofensiu, groller o que vulneri la intimitat de tercers.</li>
+          <li><strong>Veracitat:</strong> Els usuaris han de publicar informació real.</li>
+          <li><strong>Manteniment:</strong> Cal retirar l'anunci un cop s'hagi realitzat el favor.</li>
         </ul>
-      </div>
-      <div>
-        <h3 class="font-black text-on-surface mb-2">3. Límits de l'Ajuda Mútua i Prevenció de l'Abús</h3>
-        <ul class="space-y-1 list-disc list-inside">
-          <li><strong>Favors puntuals vs. Serveis professionals:</strong> La Xarxa està pensada per a favors puntuals i suport entre els participants. No s'ha d'utilitzar per sol·licitar feines de gran envergadura que requereixin una qualificació professional o un manteniment continuat en el temps que pugui derivar en explotació del voluntari.</li>
-          <li><strong>Abús de demandes:</strong> L'administradora es reserva el dret de cridar l'atenció o limitar l'activitat d'aquells usuaris que facin peticions de manera desproporcionada i no col·laborin amb la comunitat.</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-black text-on-surface mb-2">4. Responsabilitat i Seguretat</h3>
-        <ul class="space-y-1 list-disc list-inside">
-          <li><strong>Exempció de responsabilitat:</strong> La Xarxa de Favors actua exclusivament com un tauler d'anuncis per posar en contacte persones. L'administradora no es fa responsable de la qualitat dels favors realitzats, de l'estat dels objectes donats ni del comportament dels usuaris durant les trobades.</li>
-          <li><strong>Seguretat personal:</strong> Es recomana que les trobades per a intercanvis o favors es realitzin, preferiblement, en espais públics o en cercles coneguts.</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-black text-on-surface mb-2">5. Gestió del Grup de WhatsApp</h3>
-        <ul class="space-y-1 list-disc list-inside">
-          <li><strong>Privacitat:</strong> Els acords logístics (adreces, horaris concrets, telèfons) s'han de gestionar sempre per missatge privat entre els interessats per protegir les dades personals de tots els membres.</li>
-          <li><strong>Comunicació:</strong> El xat del grup es reservarà exclusivament per a comunicacions de la Xarxa. Es prohibeix l'enviament de "cadenes", vídeos virals, notícies no verificades o qualsevol contingut que saturi el dispositiu dels usuaris.</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-black text-on-surface mb-2">6. Protecció de Dades i Privacitat</h3>
-        <ul class="space-y-1 list-disc list-inside">
-          <li>En entrar a la Xarxa, l'usuari accepta que el seu nom i dades de contacte siguin visibles per a la resta de membres amb l'única finalitat de facilitar l'ajuda mútua.</li>
-          <li>Queda prohibit utilitzar les dades de contacte dels membres per a finalitats alienes a la Xarxa.</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-black text-on-surface mb-2">7. Règim Sancionador</h3>
-        <p>L'administradora es reserva el dret d'eliminar qualsevol anunci que incompleixi aquestes normes i d'expulsar de la plataforma aquelles persones que mostrin conductes incíviques, abusives o que no respectin la filosofia del projecte.</p>
       </div>
     </div>
     <div class="px-8 py-5 border-t border-outline-variant">
-      <button onclick="document.getElementById('normesModal').classList.add('hidden')" class="w-full py-3 rounded-2xl bg-primary text-white font-black hover:brightness-95 transition-all">
-        Entesos
-      </button>
+      <button onclick="document.getElementById('normesModal').classList.add('hidden')" class="w-full py-3 rounded-2xl bg-primary text-white font-black hover:brightness-95 transition-all">Entesos</button>
     </div>
   </div>
 </div>
@@ -1015,4 +916,13 @@ function validarWhatsapp(input) {
     <span class="material-symbols-outlined text-base">close</span>
   </button>
 </div>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('Aplicació de favors llista per a ser instal·lada', reg))
+      .catch(err => console.error('Error en activar l\'App', err));
+  }
+</script>
+
 </body></html>
