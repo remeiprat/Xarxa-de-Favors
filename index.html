@@ -318,11 +318,11 @@ function toggleMobileMenu() {
 
 <script>
   // ============================================================
-  // CONFIGURACIÓ AIRTABLE — Token gestionat pel servidor (Netlify)
+  // CONFIGURACIÓ AIRTABLE
   // ============================================================
-  const BASE_ID    = "appC9AFAxKuIJgdFH";
-  const TABLE_NAME = "Favors";
-  const PROXY_URL  = "/.netlify/functions/airtable-proxy";
+  const AIRTABLE_TOKEN = "patl7aRnpEOSgAQ5Q.a35d2dfaa5f500f0429639500f8648803db185167e371a4b44ba40db6e937e39";
+  const BASE_ID        = "appC9AFAxKuIJgdFH";
+  const TABLE_NAME     = "Favors";
 
   // ============================================================
   // Variables Globals i Inicialització
@@ -380,6 +380,7 @@ function toggleMobileMenu() {
 
   function airtableHeaders() {
     return {
+      Authorization: `Bearer ${AIRTABLE_TOKEN}`,
       "Content-Type": "application/json"
     };
   }
@@ -388,7 +389,11 @@ function toggleMobileMenu() {
   // 1. LLEGIR I MOSTRAR ELS FAVORS
   // ============================================================
   async function fetchFavors() {
-    const url = PROXY_URL;
+    if (!AIRTABLE_TOKEN || AIRTABLE_TOKEN === "POSA_AQUI_EL_TOKEN_NOU") {
+      console.warn("⚠️ AIRTABLE_TOKEN buit — no es carreguen dades.");
+      return;
+    }
+    const url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}?sort[0][field]=CreatedTime&sort[0][direction]=desc`;
     try {
       const response = await fetch(url, { headers: airtableHeaders() });
       if (!response.ok) {
@@ -583,6 +588,11 @@ function toggleMobileMenu() {
   document.getElementById('publish-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    if (!AIRTABLE_TOKEN || AIRTABLE_TOKEN === "POSA_AQUI_EL_TOKEN_NOU") {
+      alert("⚠️ Cal configurar el token d'Airtable al codi.");
+      return;
+    }
+
     const titol      = document.getElementById('titol').value.trim();
     const descripcio = document.getElementById('descripcio').value.trim();
     const nom        = document.getElementById('nom').value.trim();
@@ -618,7 +628,7 @@ function toggleMobileMenu() {
     };
 
     try {
-      const response = await fetch(PROXY_URL, {
+      const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`, {
         method: "POST",
         headers: airtableHeaders(),
         body: JSON.stringify(payload)
@@ -656,7 +666,7 @@ function toggleMobileMenu() {
       const inputComentari = prompt("Com ha anat l'experiència? Deixa un breu comentari (es mostrarà a l'històric de forma pública):") || "";
       
       try {
-        const response = await fetch(`${PROXY_URL}?recordId=${recordId}`, {
+        const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}/${recordId}`, {
           method: "PATCH",
           headers: airtableHeaders(),
           body: JSON.stringify({ 
@@ -686,7 +696,7 @@ function toggleMobileMenu() {
   async function aprovarMissatge(recordId, titol, tipus) {
     if (!confirm("Vols aprovar i publicar aquest missatge?")) return;
     try {
-      const response = await fetch(`${PROXY_URL}?recordId=${recordId}`, {
+      const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}/${recordId}`, {
         method: "PATCH",
         headers: airtableHeaders(),
         body: JSON.stringify({ fields: { Status: "obert" } })
@@ -712,7 +722,7 @@ function toggleMobileMenu() {
   async function rebutjarMissatgeAdmin(recordId) {
     if (!confirm("Vols marcar aquest missatge com a 'no apte'?")) return;
     try {
-      const response = await fetch(`${PROXY_URL}?recordId=${recordId}`, {
+      const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}/${recordId}`, {
         method: "PATCH",
         headers: airtableHeaders(),
         body: JSON.stringify({ fields: { Status: "no apte" } })
