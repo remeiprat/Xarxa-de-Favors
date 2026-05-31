@@ -2,16 +2,61 @@
 // Netlify Function: airtable-proxy.js
 // Proxy segur entre el navegador i l'API d'Airtable.
 // El token mai no arriba al client — queda al servidor.
+// Usa el mòdul https natiu de Node.js (sense dependències).
 // ============================================================
 
+const https = require("https");
+
+function httpsRequest(url, options, body) {
+  return new Promise((resolve, reject) => {
+    const parsed = new URL(url);
+    const reqOptions = {
+      hostname: parsed.hostname,
+      path: parsed.pathname + parsed.search,
+      method: options.method || "GET",
+      headers: options.headers || {},
+    };
+
+    const req = https.request(reqOptions, (res) => {
+      let data = "";
+      res.on("data", (chunk) => { data += chunk; });
+      res.on("end", () => {
+        try {
+          resolve({ status: res.statusCode, body: JSON.parse(data) });
+        } catch {
+          resolve({ status: res.statusCode, body: data });
+        }
+      });
+    });
+
+    req.on("error", reject);
+    if (body) req.write(body);
+    req.end();
+  });
+}
+
 exports.handler = async (event) => {
-  const TOKEN    = process.env.AIRTABLE_TOKEN;
-  const BASE_ID  = process.env.AIRTABLE_BASE_ID || "appC9AFAxKuIJgdFH";
-  const TABLE    = "Favors";
+  // Gestionar preflight CORS (OPTIONS)
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+      body: "",
+    };
+  }
+
+  const TOKEN   = process.env.AIRTABLE_TOKEN;
+  const BASE_ID = process.env.AIRTABLE_BASE_ID || "appC9AFAxKuIJgdFH";
+  const TABLE   = "Favors";
 
   if (!TOKEN) {
     return {
       statusCode: 500,
+      headers: { "Access-Control-Allow-Origin": "*" },
       body: JSON.stringify({ error: "AIRTABLE_TOKEN no configurat a les variables d'entorn de Netlify." }),
     };
   }
@@ -35,29 +80,25 @@ exports.handler = async (event) => {
   };
 
   try {
-    const fetchOptions = {
-      method,
-      headers,
-    };
-    if (method === "POST" || method === "PATCH") {
-      fetchOptions.body = event.body;
+    const body = (method === "POST" || method === "PATCH") ? event.body : null;
+    if (body) {
+      headers["Content-Length"] = Buffer.byteLength(body);
     }
 
-    const response = await fetch(airtableUrl, fetchOptions);
-    const data = await response.json();
+    const result = await httpsRequest(airtableUrl, { method, headers }, body);
 
     return {
-      statusCode: response.status,
+      statusCode: result.status,
       headers: {
         "Content-Type": "application/json",
-        // Permet crides des del mateix domini
         "Access-Control-Allow-Origin": "*",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(result.body),
     };
   } catch (err) {
     return {
       statusCode: 500,
+      headers: { "Access-Control-Allow-Origin": "*" },
       body: JSON.stringify({ error: err.message }),
     };
   }
