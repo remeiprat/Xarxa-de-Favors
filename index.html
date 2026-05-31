@@ -633,11 +633,7 @@ function toggleMobileMenu() {
       document.getElementById('whatsapp').classList.remove('ring-2', 'ring-green-400', 'ring-red-400');
       document.getElementById('publishModal').classList.add('hidden');
 
-      const msgAdmin = "⏳ Nova entrada pendent de revisió a la Xarxa de Favors!
-
-📌 *" + titol + "* (" + tipus + ")
-
-Revisa-la i canvia l'estat per publicar-la.";
+      const msgAdmin = `⏳ Nova entrada pendent de revisió a la Xarxa de Favors!\n\n📌 *${titol}* (${tipus})\n\nRevisa-la i canvia l'estat per publicar-la.`;
       mostrarToastAdmin("https://wa.me/34606149649?text=" + encodeURIComponent(msgAdmin));
       fetchFavors();
     } catch (error) {
@@ -923,7 +919,7 @@ function validarWhatsapp(input) {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js')
       .then(reg => console.log('Aplicació de favors llista per a ser instal·lada', reg))
-      .catch(err => console.error('Error en activar l'App', err));
+      .catch(err => console.error("Error en activar l'App", err));
   }
 </script>
 
